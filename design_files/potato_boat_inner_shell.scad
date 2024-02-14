@@ -1,6 +1,6 @@
 bucket_diameter = 230;
 bucket_height = 210;
-wall_thickness = 1.2;
+wall_thickness = 1.6;
 
 module cutout() {
     cylinder(r=2*wall_thickness, h=wall_thickness, $fn=12);

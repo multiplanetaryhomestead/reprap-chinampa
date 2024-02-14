@@ -1,6 +1,6 @@
 bucket_diameter = 235;
 bucket_height = 210;
-wall_thickness = 1.2;
+wall_thickness = 1.6;
 
 difference()
 {

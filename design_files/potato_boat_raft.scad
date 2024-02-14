@@ -1,6 +1,6 @@
 raft_diameter = 230;
 raft_height = 30;
-wall_thickness = 1.2;
+wall_thickness = 1.6;
 
 module chamfer() {
     //cylinder(r=2*wall_thickness, h=raft_height, $fn=12);
