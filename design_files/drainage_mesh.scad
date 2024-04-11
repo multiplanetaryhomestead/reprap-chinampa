@@ -1,5 +1,5 @@
 raft_diameter = 200;
-raft_height = 10;
+raft_height = 20;
 wall_thickness = 1.6;
 
 thickness_walls = 0.8;
