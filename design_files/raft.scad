@@ -15,7 +15,7 @@ wicking_chamber_diameter = 50.8;
 hole_cutout_diameter = wicking_chamber_diameter + overhang_extent;
 
 // Hidden variables:
-$fn=60;
+$fn=120;
 
 module chamfer() {
     translate([0,0,raft_height-overhang_height]) {
