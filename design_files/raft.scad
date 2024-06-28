@@ -1,44 +1,54 @@
-raft_diameter = 200;
-raft_height = 180;
-wall_thickness = 1.6;
+// printer parameters
+d_nozzle = 0.8;
+h_layer = 0.6;
 
-thickness_bottom = 0.8;
-thickness_walls = 0.8;
+// TODO: needs to be refactored to use include statement https://github.com/openscad/openscad/issues/605#issuecomment-32962394
 
-tolerance_offset = 0.1;
+// design parameters
+scale_factor = 0.2;
 
-overhang_extent=4*thickness_walls+tolerance_offset;
-overhang_angle = 45;
-overhang_height=1;
+d_raft = 200*scale_factor;
+h_raft = 180*scale_factor;
 
-wicking_chamber_diameter = 50.8;
-hole_cutout_diameter = wicking_chamber_diameter + overhang_extent;
+t_wall = d_nozzle;
+t_wall_clearance = d_nozzle;
+t_vert_wall = 4*h_layer;
+
+//h_wicking_chamber = 55*scale_factor;
+d_wicking_chamber = 50.8;
+d_drainpipe = d_wicking_chamber*scale_factor;
+overhang_angle = 60;
 
 // Hidden variables:
 $fn=120;
 
-module chamfer() {
-    translate([0,0,raft_height-overhang_height]) {
-       cylinder(r=wicking_chamber_diameter/2+overhang_extent, h=overhang_height);
-        // printing aid (overhang_angle degrees of overhang are assumed to be printable)
-        mirror([0,0,1]) {
-            intersection() {
-                cylinder(r2=0, r1=wicking_chamber_diameter/2+overhang_extent,
-                         h=(wicking_chamber_diameter/2+overhang_extent)/tan(overhang_angle));
-                cylinder(r=wicking_chamber_diameter/2+overhang_extent, h=raft_height-overhang_height);
-            }
-        }
-    }
+module conical_cavity() {
+    translate([0, 0, -tan(overhang_angle)*(d_raft/2-t_wall-d_drainpipe/2)])
+    // cone
+    cylinder(r1=d_drainpipe/2, r2=d_raft/2-2*t_wall, h=tan(overhang_angle)*(d_raft/2-t_wall-d_drainpipe/2));
+
 }
 
 module donut() {
     difference() {
-        cylinder(r=raft_diameter/2, h=raft_height);
-        cylinder(r=hole_cutout_diameter/2, h=raft_height);
+        cylinder(r=d_raft/2, h=h_raft);
+        cylinder(r=d_drainpipe/2, h=h_raft);
     }
 }
 
 difference() {
     donut();
-    chamfer();
+    
+    // conical cavity
+    translate([0, 0, h_raft-t_vert_wall])
+    conical_cavity();
+
+    // cylinder
+    translate([0, 0, h_raft-t_vert_wall])
+    cylinder(h=t_vert_wall, r=d_raft/2-2*t_wall);
+
+    // keyhole for vasemode printing
+    keyhole_clearance = 4*t_wall+2*t_wall_clearance;
+    translate([-keyhole_clearance/2, -d_raft/2, 0])
+    cube([keyhole_clearance, d_raft/2, h_raft]);
 }
