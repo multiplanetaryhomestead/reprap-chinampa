@@ -8,7 +8,7 @@ h_layer = 0.6;
 scale_factor = 0.2;
 
 d_raft = 200*scale_factor;
-h_raft = 180*scale_factor;
+h_raft = 200*scale_factor;
 
 t_wall = d_nozzle;
 t_wall_clearance = d_nozzle;
@@ -48,7 +48,6 @@ difference() {
     cylinder(h=t_vert_wall, r=d_raft/2-2*t_wall);
 
     // keyhole for vasemode printing
-    keyhole_clearance = 4*t_wall+2*t_wall_clearance;
-    translate([-keyhole_clearance/2, -d_raft/2, 0])
-    cube([keyhole_clearance, d_raft/2, h_raft]);
+    translate([-t_wall_clearance/2, -d_raft/2, 0])
+    cube([t_wall_clearance, d_raft/2, h_raft]);
 }
