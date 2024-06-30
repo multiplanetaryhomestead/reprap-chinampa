@@ -17,15 +17,16 @@ t_vert_wall = 4*h_layer;
 //h_wicking_chamber = 55*scale_factor;
 d_wicking_chamber = 50.8;
 d_drainpipe = d_wicking_chamber*scale_factor;
-overhang_angle = 60;
+overhang_angle = 70;
 
 // Hidden variables:
 $fn=120;
 
 module conical_cavity() {
-    translate([0, 0, -tan(overhang_angle)*(d_raft/2-t_wall-d_drainpipe/2)])
+    h_conical_cavity=tan(overhang_angle)*(d_raft/2-2*t_wall-d_drainpipe/2);
+    translate([0, 0, -h_conical_cavity])
     // cone
-    cylinder(r1=d_drainpipe/2, r2=d_raft/2-2*t_wall, h=tan(overhang_angle)*(d_raft/2-t_wall-d_drainpipe/2));
+    cylinder(r1=d_drainpipe/2, r2=d_raft/2-2*t_wall, h=h_conical_cavity);
 
 }
 
