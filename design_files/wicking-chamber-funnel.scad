@@ -1,7 +1,7 @@
 // printer parameters
 d_nozzle = 0.8;
 h_layer = 0.6;
-
+z_limit = 210;
 // TODO: needs to be refactored to use include statement https://github.com/openscad/openscad/issues/605#issuecomment-32962394
 
 // design parameters
@@ -11,9 +11,6 @@ tolerance = 0.5;
 t_wall = d_nozzle;
 d_raft = 200*scale_factor;
 d_funnel = d_raft-4*t_wall;
-
-t_top = 5*h_layer;
-t_bottom = 3*h_layer;
 
 t_wall_clearance = t_wall;
 
@@ -25,6 +22,9 @@ d_wicking_chamber = 50.8;
 d_drainpipe = d_wicking_chamber*scale_factor;
 
 h_cone=tan(overhang_angle)*(d_funnel/2-d_drainpipe/2);
+
+t_top = 6*h_layer;
+t_bottom = z_limit*scale_factor-h_cone-t_top;
 
 // Hidden variables:
 $fn=120;
