@@ -27,13 +27,13 @@ t_top = 6*h_layer;
 t_bottom = z_limit*scale_factor-h_cone-t_top;
 
 // Hidden variables:
-$fn=120;
+$fn=6;
 
 module chamfer() {
     h_chamfer=tan(overhang_angle)*overhang_extent+tolerance;
 
     // cone along wicking chamber
-    cylinder(r2=d_drainpipe/2+tolerance, r1=d_drainpipe/2+overhang_extent+tolerance, h=h_chamfer);
+    cylinder(r2=d_drainpipe/2+tolerance, r1=d_drainpipe/2+overhang_extent+tolerance, h=h_chamfer, $fn=120);
 }
 
 module funnel() {
@@ -62,7 +62,7 @@ module funnel() {
         cylinder(r2=d_drainpipe/2-2*t_wall-tolerance, r1=d_drainpipe/2+tolerance, h=h_cone+t_bottom-h_wicking_chamber);
 
         // wicking chamber donut
-        cylinder(r=d_drainpipe/2+tolerance, h=h_wicking_chamber);
+        cylinder(r=d_drainpipe/2+tolerance, h=h_wicking_chamber, $fn=120);
     }
 
 //    // support donut

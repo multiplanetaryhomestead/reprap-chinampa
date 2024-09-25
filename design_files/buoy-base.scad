@@ -20,7 +20,7 @@ d_drainpipe = d_wicking_chamber*scale_factor;
 overhang_angle = 70;
 
 // Hidden variables:
-$fn=120;
+$fn=6;
 
 module conical_cavity() {
     h_conical_cavity=tan(overhang_angle)*(d_raft/2-2*t_wall-d_drainpipe/2);
