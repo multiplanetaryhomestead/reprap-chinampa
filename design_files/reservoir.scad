@@ -9,7 +9,7 @@ scale_factor = 0.2;
 d_i = 200;
 h_reservoir = 210;
 wall_thickness = 2*d_nozzle;
-t_wall_clearance = 0.5;
+t_wall_clearance = 0.1;
 
 difference()
 {
