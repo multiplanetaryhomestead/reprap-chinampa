@@ -1,19 +1,13 @@
-// printer parameters
-d_nozzle = 0.8;
-h_layer = 0.6;
-z_limit = 210;
-// TODO: needs to be refactored to use include statement https://github.com/openscad/openscad/issues/605#issuecomment-32962394
-
 // design parameters
-scale_factor = 0.2;
-d_i = 200;
-h_reservoir = 210;
-wall_thickness = 2*d_nozzle;
-t_wall_clearance = 0.1;
+include <design-params.scad>
+
+h_reservoir = z_limit*scale_factor;
+d_o = d_planter+2*t_wall+2*t_wall_clearance;
+d_i = d_planter+2*t_wall_clearance;
 
 difference()
 {
-    cylinder(r=d_i/2*scale_factor+wall_thickness+t_wall_clearance, h=h_reservoir*scale_factor, $fn=6);
-    translate([0, 0, wall_thickness])
-    cylinder(r=d_i/2*scale_factor+t_wall_clearance, h=h_reservoir*scale_factor, $fn=6);
+    cylinder(r=d_o/2, h=h_reservoir, $fn=6);
+    translate([0, 0, t_wall])
+    cylinder(r=d_i/2, h=h_reservoir, $fn=6);
 }
