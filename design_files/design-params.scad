@@ -2,7 +2,7 @@
 include <printer-params.scad>
 
 // design parameters
-scale_factor = 0.2;
+scale_factor = 1.0;
 
 t_wall = d_nozzle;
 perimeter_buffer = 10;
