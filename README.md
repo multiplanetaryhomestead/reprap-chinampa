@@ -1,4 +1,4 @@
-# reprap-chinampa
+# RepRap Chinampa
 
 Passive self-watering 3D-printable vegetable pot, inspired by the chinampa (floating garden bed).
 
