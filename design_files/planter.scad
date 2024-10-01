@@ -41,4 +41,9 @@ difference() {
     // keyhole for vasemode printing
     translate([-t_wall_clearance/2, -d_planter/2, 0])
     cube([t_wall_clearance, d_planter/2, h_planter]);
+
+    // water injection port
+    translate([0, -d_drainpipe-d_planter/2, 0])
+    rotate([0, 0, 45])
+    cube([d_planter/9, d_planter/9, h_planter]);
 }
