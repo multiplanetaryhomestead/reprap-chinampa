@@ -1,7 +1,7 @@
 // design parameters
 include <design-params.scad>
 
-t_wall_clearance = d_nozzle;
+t_wall_clearance = 2*d_nozzle;
 
 h_reservoir = z_limit*scale_factor;
 d_o = d_planter+2*t_wall+2*t_wall_clearance;
