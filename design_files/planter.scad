@@ -5,7 +5,7 @@ t_wall_clearance = 0.1;
 
 h_planter = z_limit*scale_factor;
 d_wicking_chamber = 50.8*scale_factor;
-h_wicking_chamber = 55*scale_factor;
+h_wicking_chamber = 25*scale_factor;
 d_drainpipe = 4*d_nozzle;
 
 overhang_angle = 45;
