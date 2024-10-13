@@ -21,7 +21,7 @@ The models have been successfully printed using the following profile with "vase
         25% overlap: 1 mm/s
         50% overlap: 1 mm/s
         75% overlap: 2 mm/s
-    Extrusion multiplier: 1.3
+    Extrusion multiplier: 1.15
     Nozzle temperature:
         First layer: 230 C
         Other layers: 230 C
