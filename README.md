@@ -15,7 +15,7 @@ The models have been successfully printed using the following profile with "vase
     Nozzle diameter: 0.8 mm nozzle
     Layer height: 0.3 mm
     First layer speed: 10 mm/s
-    Max print speed: 10 mm/s
+    Max print speed: 30 mm/s
     Overhang speed:
         0% overlap(bridge): 10 mm/s
         25% overlap: 1 mm/s
