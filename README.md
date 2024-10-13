@@ -12,25 +12,25 @@ The models have been successfully printed on a Prusa Mk3S+ using a 0.4mm nozzle 
 
 The models have been successfully printed using the following profile with "vase mode" enabled. Note that the profile is for a 0.8 mm nozzle, but have been physically tested on a 0.4 mm nozzle.
 
-Nozzle diameter: 0.8 mm nozzle
-Layer height: 0.3 mm
-First layer speed: 10 mm/s
-Max print speed: 10 mm/s
-Overhang speed:
-    0% overlap(bridge): 10 mm/s
-    25% overlap: 1 mm/s
-    50% overlap: 1 mm/s
-    75% overlap: 2 mm/s
-Extrusion multiplier: 1.3
-Nozzle temperature:
-    First layer: 230 C
-    Other layers: 230 C
-Bed temperature:
-    First layer: 60 C
-    Other layers: 60 C
-Fan speed:
-    Min: 100%
-    Max: 100%
+    Nozzle diameter: 0.8 mm nozzle
+    Layer height: 0.3 mm
+    First layer speed: 10 mm/s
+    Max print speed: 10 mm/s
+    Overhang speed:
+        0% overlap(bridge): 10 mm/s
+        25% overlap: 1 mm/s
+        50% overlap: 1 mm/s
+        75% overlap: 2 mm/s
+    Extrusion multiplier: 1.3
+    Nozzle temperature:
+        First layer: 230 C
+        Other layers: 230 C
+    Bed temperature:
+        First layer: 60 C
+        Other layers: 60 C
+    Fan speed:
+        Min: 100%
+        Max: 100%
 
 ---
 This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)
