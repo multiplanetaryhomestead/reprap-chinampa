@@ -17,7 +17,7 @@ The models have been successfully printed using the following profile with "vase
     First layer speed: 10 mm/s
     Max print speed: 30 mm/s
     Overhang speed:
-        0% overlap(bridge): 10 mm/s
+        0% overlap(bridge): 15 mm/s
         25% overlap: 1 mm/s
         50% overlap: 1 mm/s
         75% overlap: 2 mm/s
