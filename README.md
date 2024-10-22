@@ -6,7 +6,7 @@ Passive self-watering 3D-printable floating vegetable pot, inspired by the china
 
 ### 3D Printer (Hardware) Configuration/Modifications
 
-The models have been successfully printed on a Prusa Mk3S+ using a 0.4mm nozzle with an upgraded part cooling duct (See https://www.printables.com/model/906613-highv-part-cooling-duct-for-prusa-i3-mk3s)
+The models have been successfully printed in Natural PLA on a Prusa Mk3S+ using a 0.4mm nozzle with an upgraded part cooling duct (See https://www.printables.com/model/906613-highv-part-cooling-duct-for-prusa-i3-mk3s)
 
 ### Print Profile / Slicing
 
