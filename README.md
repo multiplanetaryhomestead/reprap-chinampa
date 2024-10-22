@@ -1,6 +1,6 @@
 # RepRap Chinampa
 
-Passive self-watering 3D-printable vegetable pot, inspired by the chinampa (floating garden bed).
+Passive self-watering 3D-printable floating vegetable pot, inspired by the chinampa (floating garden bed).
 
 ## 3D Printing Notes
 
@@ -8,7 +8,7 @@ Passive self-watering 3D-printable vegetable pot, inspired by the chinampa (floa
 
 The models have been successfully printed on a Prusa Mk3S+ using a 0.4mm nozzle with an upgraded part cooling duct (See https://www.printables.com/model/906613-highv-part-cooling-duct-for-prusa-i3-mk3s)
 
-## Print Profile / Slicing
+### Print Profile / Slicing
 
 The models have been successfully printed using the following profile with "vase mode" enabled. Note that the profile is for a 0.8 mm nozzle, but have been physically tested on a 0.4 mm nozzle.
 
