@@ -31,9 +31,8 @@ difference() {
     cylinder(r=d_drainpipe/2, h=h_bottom_shell);
 
     // drain mesh
-    make_bottom_holes(.08, .18, 12, d_wicking_chamber);
-    make_bottom_holes(.22, .32, 24, d_wicking_chamber);
-    make_bottom_holes(.36, .46, 32, d_wicking_chamber);
+    for ( i = [0:1:3])
+    make_bottom_holes(0.06+i*.11, .12+i*.11, 6*(i+1), d_wicking_chamber);
 
     // keyhole for vasemode printing
     translate([-t_wall_clearance/2, -d_planter/2, 0])
