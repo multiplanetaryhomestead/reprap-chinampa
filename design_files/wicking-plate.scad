@@ -10,8 +10,8 @@ difference() {
     cylinder(r=d_planter_cavity/2, h=h_bottom_shell);
 
     // drain mesh
-    for ( i = [0:1:10])
-        make_bottom_holes(.025*i+.12, .025*i+.125, 6*(i+5), d_planter);
+    for ( i = [0:1:6])
+        make_bottom_holes(.035*i+.14, .035*i+.15, 6*(i+5), d_planter);
 
     cylinder(r=d_wicking_chamber/2, h=h_bottom_shell);
 
