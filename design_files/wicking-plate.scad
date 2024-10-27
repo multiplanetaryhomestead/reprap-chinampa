@@ -7,12 +7,14 @@ $fn=6;
 
 // baseplate
 difference() {
-    cylinder(r=d_planter_cavity/2, h=h_bottom_shell);
+    // base
+    cylinder(r1=d_planter_cavity/2, r2=d_planter_cavity/2-h_bottom_shell, h=h_bottom_shell);
 
     // drain mesh
     for ( i = [0:1:6])
         make_bottom_holes(.035*i+.14, .035*i+.15, 6*(i+5), d_planter);
 
+    // cutout for wicking chamber
     cylinder(r=d_wicking_chamber/2, h=h_bottom_shell);
 
 }
