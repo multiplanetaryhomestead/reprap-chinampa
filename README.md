@@ -16,14 +16,17 @@ The models have been successfully printed using the following profile with "vase
     Layer height: 0.3 mm
     Top fill pattern: Concentric
     Bottom fill pattern: Concentric
-    First layer speed: 10 mm/s
+    Infill speed: 5 mm/s
+    Solid infill speed: 5 mm/s
+    Top solid infill speed: 5 mm/s
+    First layer speed: 5 mm/s
     Max print speed: 30 mm/s
     Overhang speed:
         0% overlap(bridge): 15 mm/s
         25% overlap: 1 mm/s
         50% overlap: 1 mm/s
         75% overlap: 2 mm/s
-    Extrusion multiplier: 1.25
+    Extrusion multiplier: 1.2
     Nozzle temperature:
         First layer: 230 C
         Other layers: 230 C
@@ -33,6 +36,7 @@ The models have been successfully printed using the following profile with "vase
     Fan speed:
         Min: 100%
         Max: 100%
+    Lift height: 0.8 mm
 
 ---
 This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)
