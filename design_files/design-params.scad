@@ -5,12 +5,22 @@ include <printer-params.scad>
 scale_factor = 1.0;
 
 t_wall = d_nozzle;
+t_wall_clearance = d_nozzle;
+
 perimeter_buffer = 10;
-d_planter = (2*y_limit/sqrt(3) - perimeter_buffer)*scale_factor;
+
+d_buoy = (2*y_limit/sqrt(3) - perimeter_buffer)*scale_factor;
 
 d_wicking_chamber = 50.8*scale_factor;
-h_wicking_chamber = 0*scale_factor;
+h_wicking_chamber = 60*scale_factor;
 
 overhang_angle = 45;
-h_conical_cavity = tan(overhang_angle)*(d_planter/2-2*t_wall-d_wicking_chamber/2);
-d_planter_cavity = 2*(d_planter/2.5-2*t_wall);
+h_conical_cavity = tan(overhang_angle)*(d_buoy/2-2*t_wall-d_wicking_chamber/2);
+d_buoy_cavity = d_buoy-4*t_wall;
+h_bottom_shell = 3*h_layer;
+
+d_planter = d_buoy_cavity-2*t_wall_clearance;
+d_planter_cavity = d_planter-2*t_wall;
+
+d_water_injection_port_buoy = d_buoy/8;
+d_water_injection_port_cavity_buoy = d_water_injection_port_buoy - 4*t_wall;
