@@ -40,6 +40,16 @@ The models have been successfully printed using the following profile with "vase
         Max: 100%
     Lift height: 0.8 mm
 
+## Attributions
+
+This project was either built on or inspired by the works of
+
+- *Chinampas* pioneered by the native Aztec tribes and farmlands of southwestern region of the Valley of Mexico
+- [Self-watering rectangular planter](https://www.printables.com/model/57885-self-watering-rectangular-planter-with-optional-la)
+- [Avocado Boat - minimalistic](https://www.printables.com/model/179070-avocado-boat-minimalistic-vase-mode)
+- [Parametric Net Pot (CC-BY-SA-3.0)](https://www.thingiverse.com/thing:790339)
+- [The RepRap movement](https://reprap.org/)
+
 ---
 This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)
 
