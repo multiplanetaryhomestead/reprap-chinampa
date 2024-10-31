@@ -8,6 +8,8 @@ Passive self-watering 3D-printable floating vegetable pot, inspired by the china
 
 The models have been successfully printed in Natural PLA on a Prusa Mk3S+ using a 0.4mm nozzle with an upgraded part cooling duct (See https://www.printables.com/model/906613-highv-part-cooling-duct-for-prusa-i3-mk3s)
 
+**NOTE**: The standard brass nozzle is **not considered food-safe**, as it wears out. A stainless-steel or titanium nozzle is recommended if you are even considering printing with food in mind.<sup>[1](#footnote1)</sup>
+
 ### Print Profile / Slicing
 
 The models have been successfully printed using the following profile with "vase mode" enabled. Note that the profile is for a 0.8 mm nozzle, but have been physically tested on a 0.4 mm nozzle.
@@ -42,3 +44,5 @@ The models have been successfully printed using the following profile with "vase
 This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)
 
 [![CC-BY-SA 4.0](https://licensebuttons.net/l/by-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/)
+
+<a name="footnote1">1</a>: https://help.prusa3d.com/article/food-safe-fdm-printing_112313
