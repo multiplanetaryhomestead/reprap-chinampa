@@ -13,7 +13,7 @@ The models have been successfully printed in Natural PLA on a Prusa Mk3S+ using 
 The models have been successfully printed using the following profile with "vase mode" enabled. Note that the profile is for a 0.8 mm nozzle, but have been physically tested on a 0.4 mm nozzle.
 
     Nozzle diameter: 0.8 mm nozzle
-    Layer height: 0.3 mm
+    Layer height: 0.2 mm
     Top fill pattern: Concentric
     Bottom fill pattern: Concentric
     Infill speed: 5 mm/s
