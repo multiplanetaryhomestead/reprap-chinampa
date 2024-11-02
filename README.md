@@ -36,6 +36,7 @@ The models have been successfully printed using the following profile with "vase
     Fan speed:
         Min: 100%
         Max: 100%
+    Min print speed: 1 mm/s
     Lift height: 0.8 mm
 
 ---
