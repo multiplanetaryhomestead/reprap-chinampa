@@ -12,7 +12,7 @@ module support_beams() {
         for ( i = [0:1:2])
             rotate([0, 0, i*120])
             translate([d_buoy_cavity/2+t_wall, 0, 0])
-            cylinder(r1=d_buoy_cavity/2, r2=d_buoy_cavity/2, h=h_conical_cavity);
+            cylinder(r=d_buoy_cavity/2, h=h_conical_cavity);
 
         cylinder(r1=d_wicking_chamber/2-t_wall, r2=d_wicking_chamber/4-t_wall, h=h_conical_cavity+h_wicking_chamber, $fn=6.1);
     }

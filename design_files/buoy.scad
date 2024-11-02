@@ -13,7 +13,7 @@ $fn=6;
 difference() {
     // water injection port walls
     translate([d_buoy/2-d_water_injection_port_buoy/2, 0, 0])
-    water_injection_port(r_o=d_water_injection_port_buoy/2, r_i=d_water_injection_port_cavity_buoy/2);
+    water_injection_port(r_o=d_water_injection_port_buoy/2, r_i=d_water_injection_port_cavity_buoy/2, h=h_buoy);
 
     // keyhole for vasemode printing
     keyhole();
@@ -39,13 +39,20 @@ difference() {
     translate([0, 0, h_bottom_shell])
     cylinder(r=d_wicking_chamber/2, h=h_wicking_chamber);
 
-    // hexagonal cavity for drainpipe
-    cylinder(r=d_drainpipe/2, h=h_bottom_shell);
-
-    // drain mesh
-    for ( i = [0:1:3])
-    make_bottom_holes(0.06+i*.11, .12+i*.11, 6*(i+1), d_wicking_chamber);
+    // hexagonal cavity for drainage
+    cylinder(r=d_wicking_chamber/2, h=h_bottom_shell);
 
     // keyhole for vasemode printing
     keyhole();
+}
+
+// drain mesh
+difference() {
+    cylinder(r=d_wicking_chamber/2, h=h_bottom_shell);
+
+    // drain mesh holes
+    r_hole=3*d_nozzle/2;
+    rotate([0, 0, 90])
+    honeycomb_generator(r_hex=r_hole, r_dist=r_hole+3*d_nozzle, h=h_bottom_shell, n=2);
+
 }
