@@ -24,7 +24,7 @@ module invisible_shell() {
 
 difference() {
     translate([d_buoy/2-d_water_injection_port_buoy/2, 0, 0])
-    water_injection_port(r_o=d_water_injection_port_planter/2, r_i=d_water_injection_port_cavity_planter/2);
+    water_injection_port(r_o=d_water_injection_port_planter/2, r_i=d_water_injection_port_cavity_planter/2, h=h_buoy);
 
     // shell used to remove protruding water injection port walls
     invisible_shell(d_water_injection_port_planter);

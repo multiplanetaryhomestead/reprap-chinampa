@@ -2,7 +2,7 @@
 include <printer-params.scad>
 
 // design parameters
-scale_factor = 0.2;
+scale_factor = 0.5;
 
 t_wall = d_nozzle;
 t_wall_clearance = d_nozzle;
@@ -10,6 +10,7 @@ t_wall_clearance = d_nozzle;
 perimeter_buffer = 10;
 
 d_buoy = (2*y_limit/sqrt(3) - perimeter_buffer)*scale_factor;
+h_buoy = z_limit*scale_factor;
 
 d_wicking_chamber = 20*scale_factor;
 h_wicking_chamber = 120*scale_factor;

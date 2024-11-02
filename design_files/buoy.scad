@@ -2,7 +2,6 @@
 include <design-params.scad>
 include <helper-functions.scad>
 
-h_buoy = z_limit*scale_factor;
 d_drainpipe = 4*d_nozzle;
 
 t_vert_wall = h_buoy-h_conical_cavity-h_wicking_chamber;
