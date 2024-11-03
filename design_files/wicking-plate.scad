@@ -8,6 +8,10 @@ d_water_injection_port_cavity_wicking_plate = d_water_injection_port_buoy+2*t_wa
 // Hidden variables:
 $fn=6;
 
+module wicking_chamber_cavity() {
+    cylinder(r1=d_wicking_chamber/2-t_wall, r2=d_wicking_chamber/4-t_wall, h=h_conical_cavity+h_wicking_chamber, $fn=6.1);
+}
+
 module support_beams() {
     difference() {
         cylinder(r1=d_wicking_plate/2, r2=d_wicking_chamber/4, h=h_conical_cavity);
@@ -17,7 +21,7 @@ module support_beams() {
             translate([d_buoy_cavity/2+t_wall, 0, 0])
             cylinder(r=d_buoy_cavity/2, h=h_conical_cavity);
 
-        cylinder(r1=d_wicking_chamber/2-t_wall, r2=d_wicking_chamber/4-t_wall, h=h_conical_cavity+h_wicking_chamber, $fn=6.1);
+        wicking_chamber_cavity();
     }
 }
 
@@ -28,7 +32,7 @@ difference() {
 
     // drain mesh
     rotate([0, 0, 30])
-    honeycomb_generator(n=16, r_hex=0.8, r_dist=3.2, h=h_bottom_shell);
+    honeycomb_generator(n=23*scale_factor, r_hex=d_drain_hole/2, r_dist=r_drain_hole_dist, h=h_bottom_shell);
 
     // cutout for wicking chamber
     cylinder(r=d_wicking_chamber/2-t_wall, h=h_bottom_shell);
@@ -42,7 +46,7 @@ difference() {
 difference() {
     cylinder(r1=d_wicking_chamber/2, r2=d_wicking_chamber/4, h=h_conical_cavity+h_wicking_chamber);
 
-    cylinder(r1=d_wicking_chamber/2-t_wall, r2=d_wicking_chamber/4-t_wall, h=h_conical_cavity+h_wicking_chamber, $fn=6.1);
+    wicking_chamber_cavity();
 }
 
 // support beams
