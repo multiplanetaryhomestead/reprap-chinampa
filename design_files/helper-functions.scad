@@ -1,31 +1,36 @@
 // for generating drain mesh
-// TODO: finish implementation for n>3
-module honeycomb_generator(r_hex=0.8, r_dist=1.6, h=0.2, n=3, angle=60) {
-    for ( i = [0:1:6^n]) {
-        rotate([0, 0, angle*i])
-        translate([0, r_dist*n, 0])
-        cylinder(r=r_hex, h=h, $fn=6);
-
+module honeycomb_generator(n=5, r_hex=0.8, r_dist=1.6, h=0.2) {
+    angle=60;
+    for (i = [1:1:6]) {
+        if (angle*i % angle == 0 && n > 0) {
+            rotate([0, 0, angle*i])
+            translate([0, r_dist*n, 0])
+            cylinder(r=r_hex, h=h, $fn=6);
+        }
         if (n % 2 == 0) {
             rotate([0, 0, angle*i])
             translate([r_dist*n*1.5/sqrt(3), 0, 0])
             cylinder(r=r_hex, h=h, $fn=6);
         }
-        else if (n % 3 == 0) {
-            rotate([0, 0, angle*i])
-            translate([r_dist*n*1.5/sqrt(3), r_hex, 0])
-            cylinder(r=r_hex, h=h, $fn=6);
-
-            rotate([0, 0, angle*i])
-            translate([r_dist*n*1.5/sqrt(3), -r_hex, 0])
-            cylinder(r=r_hex, h=h, $fn=6);
+        if (n % 2 == 0 && n > 3) {
+            for (j = [-(n-2):2:(n-2)]) {
+                rotate([0, 0, angle*i])
+                translate([r_dist*n*1.5/sqrt(3), j*r_dist/2, 0])
+                cylinder(r=r_hex, h=h, $fn=6);
+            }
+        }
+        if (n % 2 != 0 && n > 2) {
+            for (j = [-(n-2):2:(n-2)]) {
+                rotate([0, 0, angle*i])
+                translate([r_dist*n*1.5/sqrt(3), j*r_dist/2, 0])
+                cylinder(r=r_hex, h=h, $fn=6);
+            }
         }
     }
     if (n > 0) {
-        honeycomb_generator(r_hex=r_hex, r_dist=r_dist, h=h, n=n-1);
+        honeycomb_generator(n=n-1, r_hex=r_hex, r_dist=r_dist, h=h);
     }
 }
-
 
 // water injection port cavity
 module water_injection_port_cavity(r) {
