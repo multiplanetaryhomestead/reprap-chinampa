@@ -43,12 +43,11 @@ The models have been successfully printed using the following profile with "vase
 
 ## Attributions
 
-This project was either built on or inspired by the works of
+This project was inspired by the works of
 
 - *Chinampas* pioneered by the native Aztec tribes and farmlands of southwestern region of the Valley of Mexico
 - [Self-watering rectangular planter](https://www.printables.com/model/57885-self-watering-rectangular-planter-with-optional-la)
 - [Avocado Boat - minimalistic](https://www.printables.com/model/179070-avocado-boat-minimalistic-vase-mode)
-- [Parametric Net Pot (CC-BY-SA-3.0)](https://www.thingiverse.com/thing:790339)
 - [The RepRap movement](https://reprap.org/)
 
 ---
