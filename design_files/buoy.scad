@@ -42,14 +42,3 @@ difference() {
     // keyhole for vasemode printing
     keyhole();
 }
-
-// drain mesh
-difference() {
-    cylinder(r=d_drain_pipe/2, h=h_bottom_shell);
-
-    // drain mesh holes
-    r_hole=3*d_nozzle/2;
-    rotate([0, 0, 90])
-    honeycomb_generator(n=3, r_hex=d_drain_hole/2, r_dist=r_drain_hole_dist, h=h_bottom_shell);
-
-}
