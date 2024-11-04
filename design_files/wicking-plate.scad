@@ -55,7 +55,7 @@ difference() {
 
     // drain mesh
     rotate([0, 0, 30])
-    honeycomb_generator(n=23*scale_factor, r_hex=d_drain_hole/2, r_dist=r_drain_hole_dist, h=h_bottom_shell);
+    honeycomb_generator(n=23, r_hex=d_drain_hole/2, r_dist=r_drain_hole_dist, h=h_bottom_shell);
 
     // cutout for wicking chamber
     cylinder(r=d_drain_pipe/2-t_wall, h=h_bottom_shell);
