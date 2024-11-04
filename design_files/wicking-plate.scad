@@ -5,11 +5,34 @@ include <helper-functions.scad>
 d_wicking_plate = d_buoy_cavity-2*t_wall_clearance;
 d_water_injection_port_cavity_wicking_plate = d_water_injection_port_buoy+2*t_wall_clearance;
 
+d_wicking_chamber_tip = d_drain_pipe/2;
+d_conical_tip = d_drain_hole+2*t_wall;
+h_conical_tip = (d_wicking_chamber_tip/2-d_conical_tip/2)*tan(45);
+d_wicking_chamber_base = d_drain_pipe;
+h_wicking_chamber = h_conical_cavity+h_drain_pipe-h_conical_tip;
+
 // Hidden variables:
 $fn=6;
 
 module wicking_chamber_cavity() {
-    cylinder(r1=d_drain_pipe/2-t_wall, r2=d_drain_pipe/4-t_wall, h=h_conical_cavity+h_drain_pipe, $fn=6.1);
+    cylinder(r1=d_wicking_chamber_base/2-t_wall, r2=d_wicking_chamber_tip/2-t_wall, h=h_wicking_chamber, $fn=6.1);
+}
+
+module wicking_chamber() {
+    // conical tip
+    translate([0, 0, h_conical_cavity+h_drain_pipe-h_conical_tip])
+    difference() {
+        cylinder(h=h_conical_tip, r1=d_wicking_chamber_tip/2, r2=d_conical_tip/2);
+        cylinder(h=h_conical_tip, r1=d_wicking_chamber_tip/2-t_wall, r2=d_conical_tip/2-t_wall);
+    }
+
+    // wicking chamber
+    translate([0, 0, h_conical_base])
+    difference() {
+        cylinder(r1=d_wicking_chamber_base/2, r2=d_wicking_chamber_tip/2, h=h_wicking_chamber);
+
+        wicking_chamber_cavity();
+    }
 }
 
 module support_beams() {
@@ -43,11 +66,7 @@ difference() {
 }
 
 // wicking chamber
-difference() {
-    cylinder(r1=d_drain_pipe/2, r2=d_drain_pipe/4, h=h_conical_cavity+h_drain_pipe);
-
-    wicking_chamber_cavity();
-}
+wicking_chamber();
 
 // support beams
 support_beams();
