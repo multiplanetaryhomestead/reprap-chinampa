@@ -2,9 +2,7 @@
 include <design-params.scad>
 include <helper-functions.scad>
 
-d_drainpipe = 4*d_nozzle;
-
-t_vert_wall = h_buoy-h_conical_cavity-h_wicking_chamber;
+t_vert_wall = h_buoy-h_conical_cavity-h_drain_pipe;
 
 // Hidden variables:
 $fn=6;
@@ -27,19 +25,19 @@ difference() {
     water_injection_port_cavity(d_water_injection_port_cavity_buoy/2);
 
     // top hexagonal cavity
-    translate([0, 0, h_conical_cavity+h_wicking_chamber+h_bottom_shell])
+    translate([0, 0, h_conical_cavity+h_drain_pipe+h_bottom_shell])
     cylinder(r=d_buoy_cavity/2, h=t_vert_wall);
 
     // conical cavity
-    translate([0, 0, h_wicking_chamber+h_bottom_shell])
-    cylinder(r1=d_wicking_chamber/2, r2=d_buoy_cavity/2, h=h_conical_cavity);
+    translate([0, 0, h_drain_pipe+h_bottom_shell])
+    cylinder(r1=d_drain_pipe/2, r2=d_buoy_cavity/2, h=h_conical_cavity);
 
     // cavity for wicking wicking medium (e.g., peat moss)
     translate([0, 0, h_bottom_shell])
-    cylinder(r=d_wicking_chamber/2, h=h_wicking_chamber);
+    cylinder(r=d_drain_pipe/2, h=h_drain_pipe);
 
     // hexagonal cavity for drainage
-    cylinder(r=d_wicking_chamber/2, h=h_bottom_shell);
+    cylinder(r=d_drain_pipe/2, h=h_bottom_shell);
 
     // keyhole for vasemode printing
     keyhole();
@@ -47,7 +45,7 @@ difference() {
 
 // drain mesh
 difference() {
-    cylinder(r=d_wicking_chamber/2, h=h_bottom_shell);
+    cylinder(r=d_drain_pipe/2, h=h_bottom_shell);
 
     // drain mesh holes
     r_hole=3*d_nozzle/2;

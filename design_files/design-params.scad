@@ -12,11 +12,11 @@ perimeter_buffer = 10;
 d_buoy = (2*y_limit/sqrt(3) - perimeter_buffer)*scale_factor;
 h_buoy = z_limit*scale_factor;
 
-d_wicking_chamber = 20*scale_factor;
-h_wicking_chamber = 140*scale_factor;
+d_drain_pipe = 20*scale_factor;
+h_drain_pipe = 140*scale_factor;
 
 overhang_angle = 60;
-h_conical_cavity = tan(90-overhang_angle)*(d_buoy/2-2*t_wall-d_wicking_chamber/2);
+h_conical_cavity = tan(90-overhang_angle)*(d_buoy/2-2*t_wall-d_drain_pipe/2);
 d_buoy_cavity = d_buoy-4*t_wall;
 h_bottom_shell = 3*h_layer;
 
