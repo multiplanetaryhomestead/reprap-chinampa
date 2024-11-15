@@ -25,11 +25,6 @@ The models have been successfully printed using the following profile with "vase
     Top solid infill speed: 5 mm/s
     First layer speed: 5 mm/s
     Max print speed: 30 mm/s
-    Overhang speed:
-        0% overlap(bridge): 15 mm/s
-        25% overlap: 1 mm/s
-        50% overlap: 1 mm/s
-        75% overlap: 2 mm/s
     Extrusion multiplier: 1.2
     Nozzle temperature:
         First layer: 230 C
@@ -40,7 +35,6 @@ The models have been successfully printed using the following profile with "vase
     Fan speed:
         Min: 100%
         Max: 100%
-    Min print speed: 1 mm/s
     Lift height: 0.8 mm
 
 ## Attributions
