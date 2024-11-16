@@ -23,7 +23,6 @@ The models have been successfully printed using the following profile with "vase
     Infill speed: 5 mm/s
     Solid infill speed: 5 mm/s
     Top solid infill speed: 5 mm/s
-    First layer speed: 5 mm/s
     Max print speed: 30 mm/s
     Extrusion multiplier: 1.2
     Nozzle temperature:
