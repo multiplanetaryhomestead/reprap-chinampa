@@ -8,14 +8,21 @@ d_water_injection_port_cavity_wicking_plate = d_water_injection_port_buoy+2*t_wa
 d_wicking_chamber_tip = d_drain_pipe/2;
 d_conical_tip = d_drain_hole+2*t_wall;
 h_conical_tip = (d_wicking_chamber_tip/2-d_conical_tip/2)*tan(45);
-d_wicking_chamber_base = d_drain_pipe;
-h_wicking_chamber = h_conical_cavity+h_drain_pipe-h_conical_tip;
+d_wicking_chamber_long_base = d_drain_pipe-4*t_wall_clearance;
+h_wicking_chamber_long = h_conical_cavity/2+h_drain_pipe-h_conical_tip;
+d_wicking_chamber_short_base = d_planter/5;
+h_wicking_chamber_short = h_conical_cavity/2;
 
 // Hidden variables:
 $fn=6;
 
 module wicking_chamber_cavity() {
-    cylinder(r1=d_wicking_chamber_base/2-t_wall, r2=d_wicking_chamber_tip/2-t_wall, h=h_wicking_chamber, $fn=6.1);
+    // wicking chamber cavity (long section)
+    translate([0, 0, h_wicking_chamber_short])
+    cylinder(r1=d_wicking_chamber_long_base/2-t_wall, r2=d_wicking_chamber_tip/2-t_wall, h=h_wicking_chamber_long, $fn=6.1);
+
+    // wicking chamber cavity (short section)
+    cylinder(r1=d_wicking_chamber_short_base/2-t_wall, r2=d_wicking_chamber_long_base/2-t_wall, h=h_wicking_chamber_short, $fn=6.1);
 }
 
 module wicking_chamber() {
@@ -26,10 +33,17 @@ module wicking_chamber() {
         cylinder(h=h_conical_tip, r1=d_wicking_chamber_tip/2-t_wall, r2=d_conical_tip/2-t_wall);
     }
 
-    // wicking chamber
-    translate([0, 0, h_conical_base])
+    // wicking chamber (long section)
     difference() {
-        cylinder(r1=d_wicking_chamber_base/2, r2=d_wicking_chamber_tip/2, h=h_wicking_chamber);
+        translate([0, 0, h_wicking_chamber_short])
+        cylinder(r1=d_wicking_chamber_long_base/2, r2=d_wicking_chamber_tip/2, h=h_wicking_chamber_long);
+
+        wicking_chamber_cavity();
+    }
+
+    // wicking chamber (short section)
+    difference() {
+        cylinder(r1=d_wicking_chamber_short_base/2, r2=d_wicking_chamber_long_base/2, h=h_wicking_chamber_short);
 
         wicking_chamber_cavity();
     }
@@ -58,7 +72,7 @@ difference() {
     honeycomb_generator(n=23, r_hex=d_drain_hole/2, r_dist=r_drain_hole_dist, h=h_bottom_shell);
 
     // cutout for wicking chamber
-    cylinder(r=d_drain_pipe/2-t_wall, h=h_bottom_shell);
+    wicking_chamber_cavity();
 
     // water injection port cavity
     translate([d_buoy/2-d_water_injection_port_buoy/2, 0, 0])
