@@ -36,6 +36,8 @@ The models have been successfully printed using the following profile with "vase
         Max: 100%
     Lift height: 0.6 mm
 
+**NOTE**: It is recommended that your first layer is properly calibrated, as to ensure a water-tight print.<sup>[2](#footnote2)</sup>
+
 ## Attributions
 
 This project was inspired by the works of
@@ -51,3 +53,5 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 [![CC-BY-SA 4.0](https://licensebuttons.net/l/by-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 <a name="footnote1">1</a>: https://help.prusa3d.com/article/food-safe-fdm-printing_112313
+
+<a name="footnote2">2</a>: https://help.prusa3d.com/article/first-layer-calibration-i3_112364
