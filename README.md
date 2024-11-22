@@ -1,8 +1,9 @@
 # RepRap Chinampa
 
-![](./reprap-chinampa-half-scale.jpg)
-
 Passive self-watering 3D-printable floating vegetable pot, inspired by the chinampa (floating garden bed).
+
+![](./reprap-chinampa-satsumaimo.jpeg)
+*Full scale model with satsuma imo (Japanese sweet potato)*
 
 ## 3D Printing Notes
 
