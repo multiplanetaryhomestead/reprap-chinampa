@@ -5,13 +5,14 @@ include <helper-functions.scad>
 d_wicking_plate = d_buoy_cavity-2*t_wall_clearance;
 d_water_injection_port_cavity_wicking_plate = d_water_injection_port_buoy+2*t_wall_clearance;
 
-d_wicking_chamber_tip = d_drain_pipe/2;
+d_wicking_chamber_long_base = d_drain_pipe-4*t_wall_clearance;
+d_wicking_chamber_tip = d_wicking_chamber_long_base-2*t_wall;
 d_conical_tip = d_drain_hole+2*t_wall;
 h_conical_tip = (d_wicking_chamber_tip/2-d_conical_tip/2)*tan(45);
-d_wicking_chamber_long_base = d_drain_pipe-4*t_wall_clearance;
-h_wicking_chamber_long = h_conical_cavity/2+h_drain_pipe-h_conical_tip;
-d_wicking_chamber_short_base = d_planter/5;
-h_wicking_chamber_short = h_conical_cavity/2;
+h_conical_offset = d_wicking_chamber_long_base/(4*tan(overhang_angle));
+h_wicking_chamber_long = h_drain_pipe-h_conical_tip+h_conical_offset ;
+d_wicking_chamber_short_base = d_planter/4;
+h_wicking_chamber_short = h_conical_cavity-h_conical_offset;
 
 // Hidden variables:
 $fn=6;
@@ -29,8 +30,10 @@ module wicking_chamber() {
     // conical tip
     translate([0, 0, h_conical_cavity+h_drain_pipe-h_conical_tip])
     difference() {
-        cylinder(h=h_conical_tip, r1=d_wicking_chamber_tip/2, r2=d_conical_tip/2);
-        cylinder(h=h_conical_tip, r1=d_wicking_chamber_tip/2-t_wall, r2=d_conical_tip/2-t_wall);
+        rotate([0, 0, 30])
+        cylinder(h=h_conical_tip, r1=d_wicking_chamber_tip*sqrt(3)/4, r2=d_conical_tip/2, $fn=6);
+        rotate([0, 0, 30])
+        cylinder(h=h_conical_tip, r1=d_wicking_chamber_tip*sqrt(3)/4-t_wall, r2=d_conical_tip/2-t_wall, $fn=6);
     }
 
     // wicking chamber (long section)
@@ -69,7 +72,7 @@ difference() {
 
     // drain mesh
     rotate([0, 0, 30])
-    honeycomb_generator(n=23, r_hex=d_drain_hole/2, r_dist=r_drain_hole_dist, h=h_bottom_shell);
+    honeycomb_generator(n=15, r_hex=d_drain_hole/2, r_dist=r_drain_hole_dist, h=h_bottom_shell);
 
     // cutout for wicking chamber
     wicking_chamber_cavity();
