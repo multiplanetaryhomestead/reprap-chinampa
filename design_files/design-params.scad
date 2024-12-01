@@ -27,4 +27,4 @@ d_water_injection_port_buoy = d_buoy/8;
 d_water_injection_port_cavity_buoy = d_water_injection_port_buoy - 4*t_wall;
 
 d_drain_hole=3*d_nozzle;
-r_drain_hole_dist = 2*d_drain_hole;
+r_drain_hole_dist = 3*d_drain_hole;
