@@ -24,18 +24,22 @@ The models have been successfully printed using the following profile with "vase
     Infill speed: 5 mm/s
     Solid infill speed: 5 mm/s
     Top solid infill speed: 5 mm/s
+    First layer print speed: 5 mm/s
     Max print speed: 30 mm/s
     Extrusion multiplier: 1.2
     Nozzle temperature:
-        First layer: 230 C
-        Other layers: 230 C
+        First layer: 220 C
+        Other layers: 220 C
     Bed temperature:
         First layer: 60 C
         Other layers: 60 C
     Fan speed:
         Min: 100%
         Max: 100%
-    Lift height: 0.6 mm
+    Lift height: 0.5 mm
+    Retraction height: 2 mm
+    Ramping lift: Enabled
+    Retraction speed: 50 mm/s
 
 **NOTE**: It is recommended that your first layer is properly calibrated, as to ensure a water-tight print.<sup>[2](#footnote2)</sup>
 
