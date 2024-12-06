@@ -15,7 +15,7 @@ The models have been successfully printed in Natural PLA on a Prusa Mk3S+ using 
 
 ### Print Profile / Slicing
 
-The models have been successfully printed using the following profile with "vase mode" enabled. Note that the profile is for a 0.8 mm nozzle, but have been physically tested on a 0.4 mm nozzle.
+**IMPORTANT**: The STL models should be sliced with **vase mode** enabled in order to produce parts that are airtight and buoyant.<sup>[2](#footnote2)</sup> In addition to enabling vase mode, the following profile has been successfully tested to produce a functional quality print. Note that the profile is for a 0.8 mm nozzle, but have been physically tested on a 0.4 mm nozzle.
 
     Nozzle diameter: 0.8 mm nozzle
     Layer height: 0.2 mm
@@ -41,7 +41,7 @@ The models have been successfully printed using the following profile with "vase
     Ramping lift: Enabled
     Retraction speed: 50 mm/s
 
-**NOTE**: It is recommended that your first layer is properly calibrated, as to ensure a water-tight print.<sup>[2](#footnote2)</sup>
+**NOTE**: It is recommended that your first layer is properly calibrated, as to ensure a water-tight print.<sup>[3](#footnote3)</sup>
 
 ## Attributions
 
@@ -59,4 +59,7 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 
 <a name="footnote1">1</a>: https://help.prusa3d.com/article/food-safe-fdm-printing_112313
 
-<a name="footnote2">2</a>: https://help.prusa3d.com/article/first-layer-calibration-i3_112364
+<a name="footnote2">2</a>: https://help.prusa3d.com/article/layers-and-perimeters_1748#spiral-vase
+
+<a name="footnote3">3</a>: https://help.prusa3d.com/article/first-layer-calibration-i3_112364
+
