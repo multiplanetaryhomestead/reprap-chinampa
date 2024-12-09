@@ -36,6 +36,7 @@ The models have been successfully printed in Natural PLA on a Prusa Mk3S+ using 
     Fan speed:
         Min: 100%
         Max: 100%
+    Min print speed: 5 mm/s
     Lift height: 0.5 mm
     Retraction height: 2 mm
     Ramping lift: Enabled
