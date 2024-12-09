@@ -5,11 +5,13 @@ Passive self-watering 3D-printable floating vegetable pot, inspired by the china
 ![](./assets/reprap-chinampa-satsumaimo-with-banana.jpeg)
 *Full scale model containing satsuma imo (Japanese sweet potato) with banana for scale*
 
+STL files can be downloaded from the [releases](https://github.com/multiplanetaryhomestead/reprap-chinampa/releases/latest) page.
+
 ## 3D Printing Notes
 
 ### 3D Printer (Hardware) Configuration/Modifications
 
-The models have been successfully printed in Natural PLA on a Prusa Mk3S+ using a 0.4mm nozzle with an upgraded part cooling duct (See https://www.printables.com/model/906613-highv-part-cooling-duct-for-prusa-i3-mk3s)
+The models have been successfully printed in Natural PLA on a Prusa Mk3S+ using a hardened steel 0.4mm nozzle and [highv part cooling duct](https://www.printables.com/model/906613-highv-part-cooling-duct-for-prusa-i3-mk3s).
 
 **NOTE**: The standard brass nozzle is **not considered food-safe**, as it wears out. A stainless-steel or titanium nozzle is recommended if you are even considering printing with food in mind.<sup>[1](#footnote1)</sup>
 
