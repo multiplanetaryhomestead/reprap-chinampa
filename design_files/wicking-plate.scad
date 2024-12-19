@@ -3,7 +3,7 @@ include <design-params.scad>
 include <helper-functions.scad>
 
 d_wicking_plate = d_buoy_cavity-2*t_wall_clearance;
-d_water_injection_port_cavity_wicking_plate = d_water_injection_port_buoy+2*t_wall_clearance;
+d_water_injection_port_cavity_wicking_plate = d_water_injection_port_buoy;
 
 d_wicking_chamber_long_base = d_drain_pipe-4*t_wall_clearance;
 d_wicking_chamber_tip = d_wicking_chamber_long_base-2*t_wall;
