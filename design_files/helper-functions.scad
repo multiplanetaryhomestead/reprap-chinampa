@@ -34,16 +34,19 @@ module honeycomb_generator(n=5, r_hex=0.8, r_dist=1.6, h=0.2) {
 
 // water injection port cavity
 module water_injection_port_cavity(r) {
+    rotate([0, 0, 30])
     cylinder(r=r, h=z_limit);
-    for ( i = [1:1:4]) {
-        translate([r*i, 0, 0])
+    for (i = [-1:2:1]) {
+        rotate([0, 0, 30*i])
+        translate([r, 0, 0])
         cylinder(r=r, h=z_limit);
-    };
+    }
 }
 
 // water injection port walls
 module water_injection_port(r_o, r_i, h) {
     difference() {
+        rotate([0, 0, 30])
         cylinder(r=r_o, h=h);
 
         // water injection port cavity

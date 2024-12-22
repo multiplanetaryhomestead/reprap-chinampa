@@ -9,8 +9,11 @@ $fn=6;
 
 difference() {
     // water injection port walls
-    translate([d_buoy/2-d_water_injection_port_buoy/2, 0, 0])
-    water_injection_port(r_o=d_water_injection_port_buoy/2, r_i=d_water_injection_port_cavity_buoy/2, h=h_buoy);
+    for (i = [0:1:6]) {
+        rotate([0, 0, i*60])
+        translate([d_buoy/2-d_water_injection_port_buoy/4-3*t_wall, 0, 0])
+        water_injection_port(r_o=d_water_injection_port_buoy/2, r_i=d_water_injection_port_cavity_buoy/2, h=h_buoy);
+    }
 
     // keyhole for vasemode printing
     keyhole();
@@ -21,8 +24,11 @@ difference() {
     cylinder(r=d_buoy/2, h=h_buoy);
 
     // water injection port cavity
-    translate([d_buoy/2-d_water_injection_port_buoy/2, 0, 0])
-    water_injection_port_cavity(d_water_injection_port_cavity_buoy/2);
+    for (i = [0:1:6]) {
+        rotate([0, 0, i*60])
+        translate([d_buoy/2-d_water_injection_port_buoy/4-3*t_wall, 0, 0])
+        water_injection_port_cavity(d_water_injection_port_cavity_buoy/2);
+    }
 
     // top hexagonal cavity
     translate([0, 0, h_conical_cavity+h_drain_pipe+h_bottom_shell])
