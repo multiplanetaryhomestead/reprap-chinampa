@@ -26,7 +26,7 @@ difference() {
     // water injection port walls
     for (i = [0:1:6]) {
         rotate([0, 0, 60*i])
-        translate([d_buoy/2-d_water_injection_port_buoy/2, 0, 0])
+        translate([d_buoy/2-sqrt(3)*d_water_injection_port_cavity_planter/4+t_wall, 0, 0])
         water_injection_port(r_o=d_water_injection_port_planter/2, r_i=d_water_injection_port_cavity_planter/2, h=h_buoy);
     }
 
@@ -41,7 +41,7 @@ difference() {
     // water injection port cavity
     for (i = [0:1:6]) {
         rotate([0, 0, 60*i])
-        translate([d_buoy/2-d_water_injection_port_buoy/2, 0, 0])
+        translate([d_buoy/2-sqrt(3)*d_water_injection_port_cavity_planter/4+t_wall, 0, 0])
         water_injection_port_cavity(d_water_injection_port_cavity_planter/2);
     }
 
