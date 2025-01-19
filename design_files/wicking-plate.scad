@@ -68,26 +68,6 @@ module support_beams() {
     }
 }
 
-// baseplate
-difference() {
-    // base
-    cylinder(r1=d_wicking_plate/2, r2=d_wicking_plate/2-h_bottom_shell*tan(overhang_angle), h=h_bottom_shell);
-
-    // drain mesh
-    rotate([0, 0, 30])
-    honeycomb_generator(n=15, r_hex=d_drain_hole/2, r_dist=r_drain_hole_dist, h=h_bottom_shell);
-
-    // cutout for wicking chamber
-    wicking_chamber_cavity();
-
-    // water injection port cavity
-    for (i = [0:1:6]) {
-        rotate([0, 0, 60*i])
-        translate([d_buoy/2-d_water_injection_port_buoy/2, 0, 0])
-        water_injection_port_cavity(d_water_injection_port_cavity_wicking_plate/2);
-    }
-}
-
 // wicking chamber
 wicking_chamber();
 
