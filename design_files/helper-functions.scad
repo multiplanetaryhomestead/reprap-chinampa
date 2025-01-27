@@ -1,3 +1,14 @@
+// used for generating isometric grid
+module rectilinear_grid_generator(r=30, w=0.4, h=0.1, n=3) {
+    difference() {
+        cylinder(h, r=r, $fn=n);
+        for (i = [0: 2*w: 2*r]) {
+            translate([-r + i, -r, 0])
+            cube([w, 2*r, h]);
+        }
+    }
+}
+
 // for generating drain mesh
 module honeycomb_generator(n=5, r_hex=0.8, r_dist=1.6, h=0.2) {
     angle=60;
