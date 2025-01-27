@@ -24,6 +24,7 @@ module invisible_shell() {
     }
 }
 
+// water injection port walls
 difference() {
     // water injection port walls
     for (i = [0:1:6]) {
@@ -36,7 +37,7 @@ difference() {
     invisible_shell(d_water_injection_port_planter);
 }
 
-// planter
+// planter walls
 difference() {
     cylinder(r=d_planter/2, h=h_planter);
 
@@ -55,34 +56,55 @@ difference() {
     cylinder(r=d_drainpipe/2, h=h_bottom_shell);
 }
 
-// baseplate
+// planter brim
 difference() {
-    // base
-    cylinder(r=d_wicking_plate/2, h=h_bottom_shell);
-
-    // drain mesh
-    n_bottom_shell = h_bottom_shell/h_layer;
-    for (i = [0:1:n_bottom_shell-1]) {
-        translate([0, 0, i*h_layer])
-        rotate([0, 0, i*60])
-        rectilinear_grid_generator(r=d_planter/2, w=d_nozzle, h=h_layer, n=6);
-    }
-    //honeycomb_generator(n=15, r_hex=d_drain_hole/2, r_dist=r_drain_hole_dist, h=h_bottom_shell);
+    cylinder(r=d_planter/2, h=h_bottom_shell);
 
     // water injection port cavity
     for (i = [0:1:6]) {
         rotate([0, 0, 60*i])
         translate([d_buoy/2-sqrt(3)*d_water_injection_port_cavity_planter/4, 0, 0])
-        water_injection_port_cavity(d_water_injection_port_cavity_wicking_plate/2+t_wall);
+        water_injection_port_cavity(d_water_injection_port_cavity_planter/2+t_wall);
+    }
+
+    // hexagonal cavity
+    translate([0, 0, 0])
+    cylinder(r=d_planter_cavity/2-sqrt(3)*d_drain_hole/2, h=h_planter);
+}
+
+// water injection port brim
+difference() {
+    // water injection port walls
+    for (i = [0:1:6]) {
+        rotate([0, 0, 60*i])
+        translate([d_buoy/2-sqrt(3)*d_water_injection_port_cavity_planter/4, 0, 0])
+        water_injection_port(r_o=d_water_injection_port_planter/2+d_drain_hole, r_i=d_water_injection_port_cavity_planter/2+t_wall, h=h_bottom_shell);
+    }
+
+    // shell used to remove protruding water injection port walls
+    invisible_shell(d_water_injection_port_planter);
+}
+
+
+// drain mesh
+difference() {
+    // drain mesh
+    isometric_grid_generator(r=d_planter/2, w=d_drain_hole, h_layer=h_layer, h_bottom_shell=h_bottom_shell); //honeycomb_generator(n=15, r_hex=d_drain_hole/2, r_dist=r_drain_hole_dist, h=h_bottom_shell);
+
+    // water injection port cavity
+    for (i = [0:1:6]) {
+        rotate([0, 0, 60*i])
+        translate([d_buoy/2-sqrt(3)*d_water_injection_port_cavity_planter/4, 0, 0])
+        water_injection_port_cavity(d_water_injection_port_cavity_planter/2+t_wall);
     }
 
     // wicking chamber cavity (short section)
-    cylinder(r=d_wicking_chamber_short_base/2-t_wall, h=h_bottom_shell, $fn=6.1);
+    cylinder(r=d_wicking_chamber_short_base/2-t_wall, h=2*h_bottom_shell, $fn=6);
 }
 
-// wicking chamber lip
+// wicking chamber interface
 difference () {
-    cylinder(r=d_wicking_chamber_short_base/2, h=h_bottom_shell, $fn=6.1);
+    cylinder(r=d_wicking_chamber_short_base/2+sqrt(3)*d_drain_hole/2, h=h_bottom_shell, $fn=6.1);
 
 // wicking chamber cavity (short section)
     cylinder(r=d_wicking_chamber_short_base/2-t_wall, h=h_bottom_shell, $fn=6.1);
