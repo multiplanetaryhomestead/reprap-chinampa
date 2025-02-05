@@ -1,3 +1,30 @@
+// isometric grid for drain mesh
+// implemented as 3x rectilinear grid patterns stacked on top of each other and rotated 60 degrees apart
+module isometric_grid_generator(r=30, w=0.8, h_layer=0.2, h_bottom_shell=3*0.2) {
+    n_bottom_shell = h_bottom_shell/h_layer;
+    rotate([0, 0, 30])
+    for (i = [0:1:n_bottom_shell-1]) {
+        translate([0, 0, i*h_layer])
+        rotate([0, 0, i*60])
+        rectilinear_grid_generator(r=r, w=w, h=h_layer, n=6);
+    }
+}
+
+// used for generating isometric grid
+module rectilinear_grid_generator(r=30, w=0.8, h=0.2, n=3) {
+    difference() {
+        rotate([0, 0, 90])
+        cylinder(h, r=r, $fn=n);
+        for (i = [0: 2*w: 2*r]) {
+            translate([i-w/2, -r-w, 0])
+            cube([w, 3*r, h]);
+            translate([-i-w/2, -r-w, 0])
+            cube([w, 3*r, h]);
+        }
+    }
+}
+
+
 // for generating drain mesh
 module honeycomb_generator(n=5, r_hex=0.8, r_dist=1.6, h=0.2) {
     angle=60;
@@ -33,24 +60,39 @@ module honeycomb_generator(n=5, r_hex=0.8, r_dist=1.6, h=0.2) {
 }
 
 // water injection port cavity
-module water_injection_port_cavity(r) {
+module water_injection_port_cavity(r, h) {
     rotate([0, 0, 30])
-    cylinder(r=r, h=z_limit);
+    cylinder(r=r, h=h, $fn=6);
     for (i = [-1:2:1]) {
         rotate([0, 0, 30*i])
-        translate([r, 0, 0])
-        cylinder(r=r, h=z_limit);
+        translate([sqrt(3)*r/2, 0, 0])
+        cylinder(r=r, h=h, $fn=6);
     }
 }
 
 // water injection port walls
 module water_injection_port(r_o, r_i, h) {
     difference() {
-        rotate([0, 0, 30])
-        cylinder(r=r_o, h=h);
+        union() {
+            rotate([0, 0, 30])
+            cylinder(r=r_o, h=h, $fn=6);
+            for (i = [-1:2:1]) {
+                rotate([0, 0, 30*i])
+                translate([sqrt(3)*r_o/4, 0, 0])
+                cylinder(r=r_o, h=h, $fn=6);
+            }
+        }
 
         // water injection port cavity
-        water_injection_port_cavity(r_i);
+        water_injection_port_cavity(r_i, h);
+    }
+}
+
+// shell used to remove protruding water injection port walls
+module invisible_shell(r_o, r_i, h) {
+    difference() {
+        cylinder(r=r_o, h=h);
+        cylinder(r=r_i, h=h);
     }
 }
 
