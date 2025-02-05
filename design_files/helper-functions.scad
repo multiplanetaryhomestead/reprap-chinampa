@@ -60,29 +60,39 @@ module honeycomb_generator(n=5, r_hex=0.8, r_dist=1.6, h=0.2) {
 }
 
 // water injection port cavity
-module water_injection_port_cavity(r) {
+module water_injection_port_cavity(r, h) {
     rotate([0, 0, 30])
-    cylinder(r=r, h=z_limit);
+    cylinder(r=r, h=h, $fn=6);
     for (i = [-1:2:1]) {
         rotate([0, 0, 30*i])
-        translate([r, 0, 0])
-        cylinder(r=r, h=z_limit);
+        translate([sqrt(3)*r/2, 0, 0])
+        cylinder(r=r, h=h, $fn=6);
     }
 }
 
 // water injection port walls
 module water_injection_port(r_o, r_i, h) {
     difference() {
-        rotate([0, 0, 30])
-        cylinder(r=r_o, h=h);
-        for (i = [-1:2:1]) {
-            rotate([0, 0, 30*i])
-            translate([r_o, 0, 0])
-            cylinder(r=r_o, h=z_limit);
+        union() {
+            rotate([0, 0, 30])
+            cylinder(r=r_o, h=h, $fn=6);
+            for (i = [-1:2:1]) {
+                rotate([0, 0, 30*i])
+                translate([sqrt(3)*r_o/4, 0, 0])
+                cylinder(r=r_o, h=h, $fn=6);
+            }
         }
 
         // water injection port cavity
-        water_injection_port_cavity(r_i);
+        water_injection_port_cavity(r_i, h);
+    }
+}
+
+// shell used to remove protruding water injection port walls
+module invisible_shell(r_o, r_i, h) {
+    difference() {
+        cylinder(r=r_o, h=h);
+        cylinder(r=r_i, h=h);
     }
 }
 

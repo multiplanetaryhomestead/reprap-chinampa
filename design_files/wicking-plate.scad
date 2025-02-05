@@ -3,7 +3,7 @@ include <design-params.scad>
 include <helper-functions.scad>
 
 d_wicking_plate = d_buoy_cavity-2*t_wall_clearance;
-d_water_injection_port_cavity_wicking_plate = d_water_injection_port_buoy;
+d_water_injection_port_cavity_wicking_plate = d_water_injection_port_buoy+2*t_wall;
 
 d_wicking_chamber_long_base = d_drain_pipe-4*t_wall_clearance;
 d_wicking_chamber_tip = d_wicking_chamber_long_base-2*t_wall;
@@ -78,7 +78,7 @@ difference() {
     // water injection port cavity
     for (i = [0:1:6]) {
         rotate([0, 0, 60*i])
-        translate([d_buoy/2-d_water_injection_port_buoy/2, 0, 0])
-        water_injection_port_cavity(d_water_injection_port_cavity_wicking_plate/2);
+        translate([x_water_injection_port, 0, 0])
+        water_injection_port_cavity(r=d_water_injection_port_cavity_wicking_plate/2, h=z_limit);
     }
 }
