@@ -75,6 +75,11 @@ module water_injection_port(r_o, r_i, h) {
     difference() {
         rotate([0, 0, 30])
         cylinder(r=r_o, h=h);
+        for (i = [-1:2:1]) {
+            rotate([0, 0, 30*i])
+            translate([r_o, 0, 0])
+            cylinder(r=r_o, h=z_limit);
+        }
 
         // water injection port cavity
         water_injection_port_cavity(r_i);
