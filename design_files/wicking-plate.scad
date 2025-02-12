@@ -9,10 +9,9 @@ d_wicking_chamber_long_base = d_drain_pipe-4*t_wall_clearance;
 d_wicking_chamber_tip = d_wicking_chamber_long_base-2*t_wall;
 d_conical_tip = d_drain_hole+2*t_wall;
 h_conical_tip = (d_wicking_chamber_tip/2-d_conical_tip/2)*tan(45);
-h_conical_offset = d_wicking_chamber_long_base/(4*tan(overhang_angle));
-h_wicking_chamber_long = h_drain_pipe-h_conical_tip+h_conical_offset ;
+h_wicking_chamber_long = h_drain_pipe-h_conical_tip;
 d_wicking_chamber_short_base = d_planter/4;
-h_wicking_chamber_short = h_conical_cavity-h_conical_offset;
+h_wicking_chamber_short = h_conical_cavity;
 
 // Hidden variables:
 $fn=6;
@@ -56,7 +55,7 @@ module support_beams() {
     for (i = [0:1:1]) {
         rotate([0, 0, 60*i])
         difference() {
-            cylinder(r1=d_wicking_plate/2, r2=d_drain_pipe/4, h=h_conical_cavity);
+            cylinder(r1=d_buoy_cavity/2, r2=d_drain_pipe/2, h=h_conical_cavity);
 
             for ( i = [0:1:2])
                 rotate([0, 0, i*120])
