@@ -12,7 +12,7 @@ function stl() {
   clean
 
   mkdir ./dist
-  (openscad -o dist/bottomless-planter.stl design_files/bottomless-planter.scad)
+  (openscad -o dist/planter.stl design_files/planter.scad)
   (openscad -o dist/buoy.stl design_files/buoy.scad)
   (openscad -o dist/reservoir.stl design_files/reservoir.scad)
   (openscad -o dist/wicking-plate.stl design_files/wicking-plate.scad)
