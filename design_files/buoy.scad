@@ -44,7 +44,7 @@ difference() {
 
     // cavity for drain pipe
     translate([0, 0, h_bottom_shell])
-    cylinder(r=d_drain_pipe/2, h=h_drain_pipe);
+    cylinder(r=d_drain_pipe/2, h=h_buoy, $fn=96);
 
     // conical cavity for mitigating cracking along bottom of drain pipe
     translate([0, 0, 0])
