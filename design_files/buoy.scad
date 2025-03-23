@@ -48,10 +48,7 @@ difference() {
 
     // conical cavity for mitigating cracking along bottom of drain pipe
     translate([0, 0, 0])
-    cylinder(r1=d_drain_pipe, r2=0, h=d_drain_pipe*cos(45));
-
-    // hexagonal cavity for drainage
-    cylinder(r=d_drain_pipe/2, h=h_bottom_shell);
+    cylinder(r1=d_drain_pipe, r2=0, h=d_drain_pipe*cos(45), $fn=96);
 
     // keyhole for vasemode printing
     keyhole();
