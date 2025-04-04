@@ -95,10 +95,3 @@ module invisible_shell(r_o, r_i, h) {
         cylinder(r=r_i, h=h);
     }
 }
-
-// keyhole for vasemode printing
-module keyhole() {
-    t_wall_clearance = 0.1;
-    translate([0, -t_wall_clearance/2, 0])
-    cube([y_limit/2, t_wall_clearance, z_limit]);
-}

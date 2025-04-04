@@ -17,6 +17,17 @@ module base_chamfer() {
     }
 }
 
+// keyhole for vasemode printing
+module keyhole() {
+    t_wall_clearance = 0.1;
+    translate([0, -t_wall_clearance/2, 0])
+    cube([y_limit/2, t_wall_clearance, z_limit]);
+    
+    rotate([45, 0, 0]) 
+    translate([0, -d_water_injection_port_buoy/4, -d_water_injection_port_buoy/4])
+    cube([y_limit/2, d_water_injection_port_buoy/2, d_water_injection_port_buoy/2]);
+}
+
 // water injection port walls
 difference() {
     // water injection port walls
