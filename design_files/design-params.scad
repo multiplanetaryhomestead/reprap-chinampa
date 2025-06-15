@@ -32,4 +32,4 @@ r_drain_hole_dist = 3*d_drain_hole;
 d_wicking_chamber_short_base = d_planter/4;
 
 r_fillet = 0.8*d_water_injection_port_cavity_buoy;
-h_bottom_fillet_offset = 0.02*r_fillet;
+h_bottom_fillet_offset = 0.08*r_fillet;
