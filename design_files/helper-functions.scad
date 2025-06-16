@@ -96,7 +96,17 @@ module invisible_shell(r_o, r_i, h) {
     }
 }
 
-// fillet logic
+//// fillet functions
+
+// used for circular filleted cutout of outer bottom
+module circular_outer_bottom_fillet(r_cyl, r_fil) {
+    difference() {
+        cylinder(h=r_fil, r=r_cyl, $fn=96);
+        bottomFillet(b=0, r=r_fil, s=200)
+        cylinder(h=r_fil, r=r_cyl, $fn=96);
+    }
+}
+
 // based on work by https://github.com/ademuri/openscad-fillets
 
 function filletDepth(r, d, i) = r * cos(asin(d * i / r));
