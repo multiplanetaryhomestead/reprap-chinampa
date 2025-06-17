@@ -96,10 +96,10 @@ difference() {
     circular_outer_bottom_fillet(r_cyl=d_buoy/2, r_fil=r_fillet);
 
     // filleted hole
-    filleted_hole(r_hole=d_drain_pipe/2, r_fil=0.8*r_fillet);
+    filleted_hole(r_hole=d_drain_pipe/2, r_fil=0.6*r_fillet);
 
     // bottom fillet along keyhole
-    keyhole_fillet(r_fil=0.8*r_fillet);
+    keyhole_fillet(r_fil=0.6*r_fillet);
     mirror([0, 1, 0])
-    keyhole_fillet(r_fil=0.8*r_fillet);
+    keyhole_fillet(r_fil=0.6*r_fillet);
 }
