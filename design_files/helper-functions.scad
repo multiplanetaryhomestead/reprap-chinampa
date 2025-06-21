@@ -99,16 +99,16 @@ module invisible_shell(r_o, r_i, h) {
 //// fillet functions
 
 // used for circular filleted cutout of outer bottom
-module circular_outer_bottom_fillet(r_cyl, r_fil, h_bottom_offset) {
+module circular_outer_bottom_fillet(r_cyl, r_fil, h_bottom_offset, res) {
     translate([0, 0, -h_bottom_offset])
     difference() {
-        cylinder(h=r_fil, r=r_cyl, $fn=96);
+        cylinder(h=r_fil, r=r_cyl, $fn=res);
 
         // remove layers that would otherwise print steep overhangs due to fillet
         cylinder(h=h_bottom_offset, r=r_cyl);
 
         bottomFillet(b=0, r=r_fil, s=200)
-        cylinder(h=r_fil, r=r_cyl, $fn=96);
+        cylinder(h=r_fil, r=r_cyl, $fn=res);
     }
 }
 

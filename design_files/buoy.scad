@@ -5,21 +5,23 @@ use <helper-functions.scad>
 t_vert_wall = h_buoy-h_conical_cavity-h_drain_pipe;
 
 // Hidden variables:
-$fn=6;
+$fn = 6;
+res_cyl = 24;
+res_fil = 96;
 
 // used for cutting out filleted hole
 module filleted_hole(r_hole, r_fil, h_bottom_offset) {
     translate([0, 0, -h_bottom_offset])
     difference() {
-        cylinder(h=r_fil, r=4*r_hole, $fn=24);
+        cylinder(h=r_fil, r=4*r_hole, $fn=res_cyl);
 
         // remove layers that would otherwise print steep overhangs due to fillet
         cylinder(h=h_bottom_fillet_offset, r=r_hole);
 
         bottomFillet(b=0, r=r_fil, s=200)
         difference() {
-            cylinder(h=r_fil, r=8*r_hole, $fn=96);
-            cylinder(h=r_fil, r=r_hole, $fn=96);
+            cylinder(h=r_fil, r=8*r_hole, $fn=res_fil);
+            cylinder(h=r_fil, r=r_hole, $fn=res_fil);
         }
     }
 }
@@ -83,7 +85,7 @@ difference() {
     cylinder(r1=d_drain_pipe/2, r2=d_buoy_cavity/2, h=h_conical_cavity);
 
     // cavity for drain pipe
-    cylinder(r=d_drain_pipe/2, h=h_buoy, $fn=96);
+    cylinder(r=d_drain_pipe/2, h=h_buoy, $fn=res_fil);
 
     // keyhole for vasemode printing
     keyhole();
@@ -97,7 +99,7 @@ difference() {
 
     // bottom fillet for mitigating cracking
     // circular filleted cutout of outer bottom
-    circular_outer_bottom_fillet(r_cyl=d_buoy/2, r_fil=r_fillet, h_bottom_offset=h_bottom_fillet_offset);
+    circular_outer_bottom_fillet(r_cyl=d_buoy/2, r_fil=r_fillet, h_bottom_offset=h_bottom_fillet_offset, res=res_fil);
 
     // filleted hole
     r_bottom_hole_fillet = 0.5*r_fillet;
