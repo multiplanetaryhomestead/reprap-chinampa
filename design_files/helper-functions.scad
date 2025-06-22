@@ -96,9 +96,112 @@ module invisible_shell(r_o, r_i, h) {
     }
 }
 
-// keyhole for vasemode printing
-module keyhole() {
-    t_wall_clearance = 0.1;
-    translate([0, -t_wall_clearance/2, 0])
-    cube([y_limit/2, t_wall_clearance, z_limit]);
+//// fillet functions
+
+// used for circular filleted cutout of outer bottom
+module circular_outer_bottom_fillet(r_cyl, r_fil, h_bottom_offset, res) {
+    translate([0, 0, -h_bottom_offset])
+    difference() {
+        cylinder(h=r_fil, r=r_cyl, $fn=res);
+
+        // remove layers that would otherwise print steep overhangs due to fillet
+        cylinder(h=h_bottom_offset, r=r_cyl);
+
+        bottomFillet(b=0, r=r_fil, s=200)
+        cylinder(h=r_fil, r=r_cyl, $fn=res);
+    }
+}
+
+// based on work by https://github.com/ademuri/openscad-fillets
+
+function filletDepth(r, d, i) = r * cos(asin(d * i / r));
+
+module topBottomFillet(b = 0, t = 2, r = 1, s = 4, e = 1) {
+    if (e == 1) {
+        topFilletPeice(t = t, r = r, s = s) children(0);
+        bottomFilletPeice(b = b, r = r, s = s) children(0);
+
+        render()
+        difference() {
+            children(0);
+
+            translate([0, 0, t - r])
+            linear_extrude(r + 1)
+            offset(delta = 1e5)
+            projection()
+            children(0);
+
+            translate([0, 0, b - 1])
+            linear_extrude(r + 1)
+            offset(delta = 1e5)
+            projection()
+            children(0);
+
+        }
+    }
+    if (e == 0) children(0);
+}
+
+module topFillet(t = 2, r = 1, s = 4, e = 1) {
+    if (e == 1) {
+        topFilletPeice(t = t, r = r, s = s) children(0);
+
+        render()
+        difference() {
+            children(0);
+            translate([0, 0, t-r])
+            linear_extrude(r + 1)
+            offset(delta = 1e5)
+            projection()
+            children(0);
+        }
+    }
+    if (e == 0) children(0);
+}
+
+module bottomFillet(b = 0, r = 1, s = 4, e = 1) {
+    if (e == 1) {
+        bottomFilletPeice(b = b, r = r, s = s) children(0);
+
+        render()
+        difference() {
+            children(0);
+            translate([0, 0, b - 1])
+            linear_extrude(r + 1)
+            offset(delta = 1e5)
+            projection()
+            children(0);
+        }
+    }
+    if (e == 0) children(0);
+}
+
+module topFilletPeice(t = 2, r = 1, s = 4) {
+    d = r/s;
+
+    for (i = [0:s]) {
+        x = filletDepth(r, d, i);
+        z = d * (s - i + 1);
+        translate([0, 0, t - z])
+        linear_extrude(d)
+        offset(delta = -r + x)
+        projection(true)
+        translate([0, 0, -t + z])
+        children(0);
+    }
+}
+
+module bottomFilletPeice(b = 0, r =1, s = 4) {
+    d = r/s;
+
+    for (i = [0:s]) {
+        x = filletDepth(r, d, i);
+        z = d * (s - i);
+        translate([0, 0, b + z])
+        linear_extrude(d)
+        offset(delta = -r + x)
+        projection(true)
+        translate([0, 0, b - z])
+        children(0);
+    }
 }
