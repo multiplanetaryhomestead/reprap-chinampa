@@ -89,13 +89,13 @@ difference() {
     }
 
     // wicking chamber cavity (short section)
-    cylinder(r=d_wicking_chamber_short_base/2-t_wall, h=2*h_bottom_shell, $fn=6);
+    cylinder(r=d_wicking_chamber_short_base/2-t_wall, h=2*h_bottom_shell, $fn=96);
 }
 
 // wicking chamber interface
 difference () {
-    cylinder(r=d_wicking_chamber_short_base/2+sqrt(3)*d_drain_hole/2, h=h_bottom_shell, $fn=6.1);
+    cylinder(r=d_wicking_chamber_short_base/2+sqrt(3)*d_drain_hole/2, h=h_bottom_shell, $fn=96);
 
 // wicking chamber cavity (short section)
-    cylinder(r=d_wicking_chamber_short_base/2-t_wall, h=h_bottom_shell, $fn=6.1);
+    cylinder(r=d_wicking_chamber_short_base/2-t_wall, h=h_bottom_shell, $fn=96);
 }
