@@ -72,6 +72,24 @@ difference() {
     keyhole();
 }
 
+// conical cavity walls
+difference() {
+    translate([0, 0, h_drain_pipe+h_bottom_shell])
+    cylinder(r=d_buoy/2, h=h_conical_cavity);
+
+    // top hexagonal cavity
+    translate([0, 0, h_drain_pipe+h_bottom_shell])
+    cylinder(r=d_buoy_cavity/2, h=h_conical_cavity);
+
+    // water injection port cavity
+    for (i = [0:1:6]) {
+        rotate([0, 0, i*60])
+        translate([x_water_injection_port, 0, 0])
+        water_injection_port_cavity(r=d_water_injection_port_cavity_buoy/2, h=z_limit+h_bottom_shell);
+    }
+
+}
+
 // buoy
 difference() {
     cylinder(r=d_buoy/2, h=h_buoy);
@@ -82,7 +100,7 @@ difference() {
 
     // conical cavity for wicking plate
     translate([0, 0, h_drain_pipe+h_bottom_shell])
-    cylinder(r1=d_drain_pipe/2, r2=d_buoy_cavity/2, h=h_conical_cavity);
+    cylinder(r1=d_drain_pipe/2, r2=d_buoy_cavity/2, h=h_conical_cavity, $fn=res_fil);
 
     // cavity for drain pipe
     cylinder(r=d_drain_pipe/2, h=h_buoy, $fn=res_fil);
