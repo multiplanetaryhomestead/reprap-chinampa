@@ -1,29 +1,33 @@
+// mirrors object and retains copy of original object
+module mirror_copy() {
+    children(); // Original object
+    mirror(v) children(); // Mirrored object
+}
+
 // isometric grid for drain mesh
 // implemented as 3x rectilinear grid patterns stacked on top of each other and rotated 60 degrees apart
-module isometric_grid_generator(r=30, w=0.8, h_layer=0.2, h_bottom_shell=3*0.2) {
+module isometric_grid_generator(r=30, w=0.8, h_layer=0.2, h_bottom_shell=3*0.2, d_hole=1.2) {
     n_bottom_shell = h_bottom_shell/h_layer;
     rotate([0, 0, 30])
     for (i = [0:1:n_bottom_shell-1]) {
         translate([0, 0, i*h_layer])
         rotate([0, 0, i*60])
-        rectilinear_grid_generator(r=r, w=w, h=h_layer, n=6);
+        rectilinear_grid_generator(r=r, w=w, h=h_layer, n=6, d_hole=d_hole);
     }
 }
 
 // used for generating isometric grid
-module rectilinear_grid_generator(r=30, w=0.8, h=0.2, n=3) {
+module rectilinear_grid_generator(r=30, w=0.8, h=0.2, n=3, d_hole=1.2) {
     difference() {
         rotate([0, 0, 90])
         cylinder(h, r=r, $fn=n);
-        for (i = [0: 2*w: 2*r]) {
-            translate([i-w/2, -r-w, 0])
-            cube([w, 3*r, h]);
-            translate([-i-w/2, -r-w, 0])
-            cube([w, 3*r, h]);
+        mirror_copy()
+        for (i = [0: w+d_hole: 2*r]) {
+            translate([i, 0, h/2])
+            cube([d_hole, 2*r, h], center=true);
         }
     }
 }
-
 
 // for generating drain mesh
 module honeycomb_generator(n=5, r_hex=0.8, r_dist=1.6, h=0.2) {
