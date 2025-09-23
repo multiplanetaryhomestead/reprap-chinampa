@@ -6,13 +6,13 @@ module mirror_copy() {
 
 // isometric grid for drain mesh
 // implemented as 3x rectilinear grid patterns stacked on top of each other and rotated 60 degrees apart
-module isometric_grid_generator(r=30, w=0.8, h_layer=0.2, h_bottom_shell=3*0.2, d_hole=1.2) {
+module isometric_grid_generator(r=30, w=0.8, h_layer=0.2, h_bottom_shell=3*0.2, n=6, d_hole=1.2) {
     n_bottom_shell = h_bottom_shell/h_layer;
     rotate([0, 0, 30])
     for (i = [0:1:n_bottom_shell-1]) {
         translate([0, 0, i*h_layer])
         rotate([0, 0, i*60])
-        rectilinear_grid_generator(r=r, w=w, h=h_layer, n=6, d_hole=d_hole);
+        rectilinear_grid_generator(r=r, w=w, h=h_layer, n=n, d_hole=d_hole);
     }
 }
 
