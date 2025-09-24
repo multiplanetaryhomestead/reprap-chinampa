@@ -10,7 +10,6 @@ d_wicking_chamber_tip = d_wicking_chamber_long_base-2*t_wall;
 d_conical_tip = d_drain_hole+2*t_wall;
 h_conical_tip = (d_wicking_chamber_tip/2-d_conical_tip/2)*tan(45);
 h_wicking_chamber_long = h_drain_pipe-h_conical_tip;
-d_wicking_chamber_short_base = d_planter/3;
 h_wicking_chamber_short = h_conical_cavity;
 t_clearance = 0.2;
 
