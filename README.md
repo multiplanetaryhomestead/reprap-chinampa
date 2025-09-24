@@ -27,9 +27,9 @@ The models have been successfully printed on a [Prusa i3 MK3S+](https://help.pru
     Layer height: 0.2 mm
     Wall generator: Classic
     Walls printing order: Inner/Outer
-    Top fill pattern: Concentric
-    Bottom fill pattern: Concentric
-    Internal solid infill patter: Concentric
+    Top surface pattern: Aligned Rectilinear
+    Bottom surface pattern: Aligned Rectilinear
+    Internal solid infill pattern: Aligned Rectilinear
     Infill speed: 5 mm/s
     Solid infill speed: 5 mm/s
     Top solid infill speed: 5 mm/s
