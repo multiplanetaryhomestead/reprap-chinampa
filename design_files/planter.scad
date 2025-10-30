@@ -79,7 +79,7 @@ difference() {
 // drain mesh
 difference() {
     // drain mesh
-    isometric_grid_generator(r=d_planter/2, w=d_drain_hole, h_layer=h_layer, h_bottom_shell=h_bottom_shell); //honeycomb_generator(n=15, r_hex=d_drain_hole/2, r_dist=r_drain_hole_dist, h=h_bottom_shell);
+    isometric_grid_generator(r=d_planter/2, w=d_nozzle, h_layer=h_layer, h_bottom_shell=h_bottom_shell, d_hole=1.5*d_nozzle);
 
     // water injection port cavity
     for (i = [0:1:6]) {
@@ -89,13 +89,13 @@ difference() {
     }
 
     // wicking chamber cavity (short section)
-    cylinder(r=d_wicking_chamber_short_base/2-t_wall, h=2*h_bottom_shell, $fn=6);
+    cylinder(r=d_wicking_chamber_short_base/2-t_wall, h=2*h_bottom_shell, $fn=96);
 }
 
 // wicking chamber interface
 difference () {
-    cylinder(r=d_wicking_chamber_short_base/2+sqrt(3)*d_drain_hole/2, h=h_bottom_shell, $fn=6.1);
+    cylinder(r=d_wicking_chamber_short_base/2+sqrt(3)*d_drain_hole/2, h=h_bottom_shell, $fn=96);
 
 // wicking chamber cavity (short section)
-    cylinder(r=d_wicking_chamber_short_base/2-t_wall, h=h_bottom_shell, $fn=6.1);
+    cylinder(r=d_wicking_chamber_short_base/2-t_wall, h=h_bottom_shell, $fn=96);
 }
