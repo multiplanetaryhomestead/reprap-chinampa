@@ -24,7 +24,7 @@ The models have been successfully printed on a [Prusa i3 MK3S+](https://help.pru
 **IMPORTANT**: The STL models should be sliced with **vase mode** enabled in order to produce parts that are airtight and buoyant.<sup>[2](#footnote2)</sup> We recommend slicing with [OrcaSlicer](https://github.com/SoftFever/OrcaSlicer) using the following profile. Note that the profile is for a 0.8 mm nozzle, but have been successfully tested on a 0.4 mm nozzle.
 
     Nozzle diameter: 0.8 mm nozzle
-    Layer height: 0.2 mm
+    Layer height: 0.15 mm
     Wall generator: Classic
     Walls printing order: Inner/Outer
     Bottom shell layers: 5
@@ -36,7 +36,7 @@ The models have been successfully printed on a [Prusa i3 MK3S+](https://help.pru
     Solid infill speed: 5 mm/s
     Top solid infill speed: 5 mm/s
     First layer print speed: 5 mm/s
-    Max print speed: 15 mm/s
+    Max print speed: 5 mm/s
     Overhang speed:
         10%, 25%: 5 mm/s
         25%, 50%: 5 mm/s
