@@ -60,14 +60,6 @@ The models have been successfully printed on a [Prusa i3 MK3S+](https://help.pru
 
 **NOTE**: It is recommended that your first layer is properly calibrated, as to ensure a water-tight print.<sup>[3](#footnote3)</sup>
 
-### GCode Post-Processing
-
-We recommend post-processing the slicer-generated gcode with the [BrickLayers](https://github.com/GeekDetour/BrickLayers) python script for increased layer adhesion along the initial layers of the print. For example:
-
-```sh
-python bricklayers.py buoy.gcode -outputFile buoy_with_bricklayers.gcode -startAtLayer 1 -enabled 1
-```
-
 ## Attributions
 
 This project was inspired by the works of
