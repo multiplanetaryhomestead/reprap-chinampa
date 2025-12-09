@@ -18,7 +18,7 @@ h_drain_pipe = 140*scale_factor;
 overhang_angle = 60;
 d_buoy_cavity = d_buoy-4*t_wall;
 h_conical_cavity = tan(90-overhang_angle)*(d_buoy_cavity/2-d_drain_pipe/2);
-h_bottom_shell = 5*h_layer;
+h_bottom_shell = 6*h_layer;
 
 d_planter = d_buoy_cavity-2*t_wall_clearance;
 d_planter_cavity = d_planter-2*t_wall;
