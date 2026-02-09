@@ -13,9 +13,11 @@ $fn = 6;
 res_cyl = 24;
 res_fil = 96;
 
-difference()
-{
-    cylinder(r=d_o/2, h=h_reservoir);
-    // circular filleted cutout of outer bottom
-    circular_outer_bottom_fillet(r_cyl=d_o/2, r_fil=r_fillet, h_bottom_offset=h_bottom_fillet_offset, res=res_fil);
+translate([0, 0, -h_bottom_fillet_offset])
+difference() {
+    bottomFillet(b=0, r=r_fillet, s=200)
+    cylinder(r=d_o/2, h=h_reservoir+h_bottom_fillet_offset);
+
+    // remove layers that would otherwise print steep overhangs due to fillet
+    cylinder(h=h_bottom_fillet_offset, r=d_o/2);
 }
