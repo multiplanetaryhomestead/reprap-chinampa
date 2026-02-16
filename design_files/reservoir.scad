@@ -15,7 +15,7 @@ res_fil = 96;
 
 translate([0, 0, -h_bottom_fillet_offset])
 difference() {
-    bottomFillet(b=0, r=r_fillet, s=200)
+    bottomFillet(b=0, r=r_fillet, s=400)
     cylinder(r=d_o/2, h=h_reservoir+h_bottom_fillet_offset);
 
     // remove layers that would otherwise print steep overhangs due to fillet
