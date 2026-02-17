@@ -2,7 +2,7 @@
 include <printer-params.scad>
 
 // design parameters
-scale_factor = 0.5;
+scale_factor = 1.0;
 
 t_wall = d_nozzle;
 t_wall_clearance = d_nozzle;
