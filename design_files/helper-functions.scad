@@ -100,6 +100,11 @@ module invisible_shell(r_o, r_i, h) {
     }
 }
 
+// hexagon function
+module hexagon2d(r) {
+    polygon(points=[[r, 0], [r/2, r*sqrt(3)/2], [-r/2, r*sqrt(3)/2], [-r, 0], [-r/2, -r*sqrt(3)/2], [r/2, -r*sqrt(3)/2]]);
+}
+
 //// fillet functions
 
 // used for circular filleted cutout of outer bottom
@@ -208,4 +213,8 @@ module bottomFilletPeice(b = 0, r =1, s = 4) {
         translate([0, 0, b - z])
         children(0);
     }
+}
+
+module rounding2d(r) {
+    offset(r = r) offset(delta = -r) children(0);
 }
