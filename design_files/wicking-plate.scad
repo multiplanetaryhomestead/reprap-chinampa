@@ -12,11 +12,16 @@ h_conical_tip = (d_wicking_chamber_tip/2-d_conical_tip/2)*tan(45);
 h_wicking_chamber_long = h_drain_pipe-h_conical_tip;
 h_wicking_chamber_short = h_conical_cavity;
 t_clearance = 0.2;
+wicking_hole_overhang_angle = 0;
 
 // Hidden variables:
 $fn=96;
 
 module wicking_chamber_cavity() {
+    // conical tip cavity
+    translate([0, 0, h_conical_cavity+h_drain_pipe-h_conical_tip])
+    cylinder(h=h_conical_tip, r1=d_wicking_chamber_tip/2-t_wall, r2=d_conical_tip/2-t_wall);
+
     // wicking chamber cavity (long section)
     translate([0, 0, h_wicking_chamber_short])
     cylinder(r1=d_wicking_chamber_long_base/2-t_wall, r2=d_wicking_chamber_tip/2-t_wall, h=h_wicking_chamber_long);
@@ -25,15 +30,39 @@ module wicking_chamber_cavity() {
     cylinder(r1=d_wicking_chamber_short_base/2-t_wall-2*t_clearance, r2=d_wicking_chamber_long_base/2-t_wall-2*t_clearance, h=h_wicking_chamber_short);
 }
 
+module wicking_chamber_holes() {
+    for (i = [0:1:6]) {
+        rotate([0, 0, 60*i])
+        translate([d_wicking_chamber_tip/2-d_drain_hole/2-t_wall, 0, -d_drain_hole])
+        cylinder(h=z_limit, r=d_drain_hole/2);
+    }
+}
+
+module wicking_chamber_hole_walls() {
+    for (i = [0:1:6]) {
+        rotate([0, 0, 60*i])
+        difference() {
+            translate([d_wicking_chamber_tip/2-d_drain_hole/2-t_wall, 0, h_wicking_chamber_short+h_wicking_chamber_long])
+            cylinder(h=d_drain_hole+t_wall, r=d_drain_hole/2+t_wall);
+
+            wicking_chamber_holes();
+
+            wicking_chamber_cavity();
+        }
+    }
+}
+
 module wicking_chamber() {
     // conical tip
     translate([0, 0, h_conical_cavity+h_drain_pipe-h_conical_tip])
     difference() {
-        rotate([0, 0, 30])
         cylinder(h=h_conical_tip, r1=d_wicking_chamber_tip/2, r2=d_conical_tip/2);
-        rotate([0, 0, 30])
         cylinder(h=h_conical_tip, r1=d_wicking_chamber_tip/2-t_wall, r2=d_conical_tip/2-t_wall);
+
+        wicking_chamber_holes();
     }
+
+    wicking_chamber_hole_walls();
 
     // wicking chamber (long section)
     difference() {
