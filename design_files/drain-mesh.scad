@@ -4,7 +4,7 @@ include <design-params.scad>
 include <helper-functions.scad>
 
 d_o_rim = d_planter_cavity - d_water_injection_port_buoy*sqrt(3)/2 - (d_water_injection_port_cavity_buoy/2)*sin(30)/sin(75) - 4*t_wall;
-d_i_rim = d_o_rim - 8*t_wall;
+d_i_rim = d_o_rim - 4*t_wall;
 
 d_i_wicking_chamber_interface = d_wicking_chamber_short_base - 2*t_wall;
 d_o_wicking_chamber_interface = d_i_wicking_chamber_interface + 4*t_wall;
