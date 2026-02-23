@@ -23,7 +23,7 @@ module donut(r_o, r_i) {
 // drain mesh
 difference() {
     // drain mesh
-    isometric_grid_generator(r=d_o_rim/2, w=d_nozzle+t_tolerance, h_layer=h_layer, h_bottom_shell=h_bottom_shell, n=96, d_hole=1.5*d_nozzle);
+    isometric_grid_generator(r=d_o_rim/2, w=d_nozzle+t_tolerance, h_layer=h_layer, h_bottom_shell=h_bottom_shell, n=96, d_hole=2*d_nozzle);
 
     // wicking chamber cavity (short section)
     cylinder(r=d_wicking_chamber_short_base/2, h=2*h_bottom_shell, $fn=96);
