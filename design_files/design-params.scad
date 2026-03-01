@@ -13,7 +13,7 @@ d_buoy = (2*y_limit/sqrt(3) - perimeter_buffer)*scale_factor;
 h_buoy = z_limit*scale_factor;
 
 d_drain_pipe = (y_limit - perimeter_buffer)*scale_factor/5;
-h_drain_pipe = 140*scale_factor;
+h_drain_pipe = 2*h_buoy/3;
 
 overhang_angle = 60;
 d_buoy_cavity = d_buoy-4*t_wall;
