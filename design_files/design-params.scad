@@ -10,6 +10,7 @@ t_wall_clearance = d_nozzle;
 perimeter_buffer = 10;
 
 d_buoy = (2*y_limit/sqrt(3) - perimeter_buffer)*scale_factor;
+d_i_buoy = sqrt(3)*d_buoy/2;
 h_buoy = z_limit*scale_factor;
 
 d_drain_pipe = (y_limit - perimeter_buffer)*scale_factor/5;
