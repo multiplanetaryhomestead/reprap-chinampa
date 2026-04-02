@@ -22,37 +22,34 @@ module filleted_hole(r_hole, r_fil) {
     }
 }
 
-// fillet along keyhole
+// bottom fillet along keyhole and wall edges
 module keyhole_fillet(r_fil) {
-    translate([0, -d_i_buoy/2, 0])
     difference() {
-        // base block
-        cube([d_buoy/2, d_i_buoy/2 + 2*r_fil, h_buoy + h_bottom_fillet_offset + z_fighting]);
+        // base triangular block
+        linear_extrude(h_buoy + h_bottom_fillet_offset + z_fighting)
+        equilateraltriangle2d(r=d_buoy/2);
 
-        // filleted block
+        // filleted triangular block
         bottomFillet(b=0, r=r_fil, s=fillet_steps)
         linear_extrude(h_buoy + h_bottom_fillet_offset + z_fighting)
-        rounding2d(r_fil)
-        square([d_buoy/2, d_i_buoy/2 + 2*r_fil], center=false);
+        rounding2d(r_fillet)
+        equilateraltriangle2d(r=d_buoy/2);
 
-        // short end
-        //cube([2*r_fil, r_fil, r_fil]);
+        // corner
+        translate([-d_buoy/2, 0, 0])
+        cube([d_buoy/2, d_buoy/2, h_buoy + h_bottom_fillet_offset + z_fighting]);
 
-        // other short end
-        translate([0, d_i_buoy/2, 0, ])
-        cube([d_buoy/2, 2*r_fil, h_buoy + h_bottom_fillet_offset + z_fighting]);
-
-        // long half
-        translate([d_buoy/4, 0, 0, ])
-        cube([d_buoy/4, d_i_buoy/2 + 2*r_fil, h_buoy + h_bottom_fillet_offset + z_fighting]);
+        // other corner
+        translate([-d_buoy/4, d_i_buoy/2, 0])
+        cube([d_i_buoy/2, d_i_buoy/2, h_buoy + h_bottom_fillet_offset + z_fighting]);
     }
 }
 
 // keyhole for vasemode printing
 module keyhole() {
     t_wall_clearance = 0.1;
-    translate([-t_wall_clearance/2, -y_limit/2, 0])
-    cube([t_wall_clearance, y_limit/2, z_limit]);
+    translate([0, -t_wall_clearance/2, 0])
+    cube([d_buoy/2, t_wall_clearance, h_buoy + z_fighting]);
 }
 
 // water injection port walls
@@ -66,14 +63,14 @@ difference() {
     }
 
     // shell used to remove protruding water injection port walls
-    invisible_shell(r_o=d_buoy/2+d_water_injection_port_buoy, r_i=d_buoy/2, h=z_limit, r_fil=r_fillet);
+    invisible_shell(r_o=d_buoy/2+d_water_injection_port_buoy, r_i=d_buoy/2, h=h_buoy+z_fighting, r_fil=r_fillet);
 
     // keyhole for vasemode printing
     keyhole();
 
-    // filleted cutout along keyhole
+    // bottom fillet along keyhole and wall edges
     keyhole_fillet(r_fil=r_fillet);
-    mirror([1, 0, 0])
+    mirror([0, 1, 0])
     keyhole_fillet(r_fil=r_fillet);
 }
 
@@ -100,9 +97,9 @@ difference() {
     // keyhole for vasemode printing
     keyhole();
 
-    // filleted cutout along keyhole
+    // bottom fillet along keyhole and wall edges
     keyhole_fillet(r_fil=r_fillet);
-    mirror([1, 0, 0])
+    mirror([0, 1, 0])
     keyhole_fillet(r_fil=r_fillet);
 }
 
@@ -141,9 +138,9 @@ difference() {
     // filleted hole
     filleted_hole(r_hole=d_drain_pipe/2, r_fil=r_fillet);
 
-    // bottom fillet along keyhole
+    // bottom fillet along keyhole and wall edges
     keyhole_fillet(r_fil=r_fillet);
-    mirror([1, 0, 0])
+    mirror([0, 1, 0])
     keyhole_fillet(r_fil=r_fillet);
 
     // remove layers that would otherwise create undesireable infill behavior

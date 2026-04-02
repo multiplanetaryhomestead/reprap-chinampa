@@ -106,6 +106,11 @@ module invisible_shell(r_o, r_i, h, r_fil=0) {
 }
 
 // hexagon function
+module equilateraltriangle2d(r) {
+    polygon(points=[[-r, 0], [0, r*sqrt(3)], [r, 0]]);
+}
+
+// hexagon function
 module hexagon2d(r) {
     polygon(points=[[r, 0], [r/2, r*sqrt(3)/2], [-r/2, r*sqrt(3)/2], [-r, 0], [-r/2, -r*sqrt(3)/2], [r/2, -r*sqrt(3)/2]]);
 }
