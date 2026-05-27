@@ -24,24 +24,60 @@ module filleted_hole(r_hole, r_fil) {
 
 // bottom fillet along keyhole and wall edges
 module keyhole_fillet(r_fil) {
+    r_fillet_offset = 3*r_fil/sqrt(3);
+    corner_to_drainpipe_angle = 24.2; //asin((d_drain_pipe/2)/(d_buoy/2 - r_fillet_offset));
+    module equilateraltriangle_corner_fillet() {
+        difference() {
+            // base triangular block
+            translate([r_fillet_offset, -r_fil, 0])
+            linear_extrude(h_buoy + h_bottom_fillet_offset + z_fighting)
+            equilateraltriangle2d(r=d_buoy/2);
+
+            // filleted triangular block
+            bottomFillet(b=0, r=r_fil, s=fillet_steps)
+            linear_extrude(h_buoy + h_bottom_fillet_offset + z_fighting)
+            rounding2d(r_fil)
+            equilateraltriangle2d(r=d_buoy/2);
+
+            // negative x-axis corner
+            translate([-d_buoy, 0, 0])
+            cube([d_buoy, d_buoy/2, h_buoy + h_bottom_fillet_offset + z_fighting]);
+
+            // positive y-axis edge
+            translate([d_buoy/2 - r_fillet_offset, r_fil, 0])
+            rotate([0, 0, 30])
+            cube([d_i_buoy/2, d_buoy/2, h_buoy + h_bottom_fillet_offset + z_fighting]);
+
+            // positive y-axis corner
+            translate([0, r_fil, 0])
+            cube([d_buoy/2 - r_fillet_offset, d_i_buoy/2, h_buoy + h_bottom_fillet_offset + z_fighting]);
+        }
+    }
+
+    // main mold
     difference() {
-        // base triangular block
-        linear_extrude(h_buoy + h_bottom_fillet_offset + z_fighting)
-        equilateraltriangle2d(r=d_buoy/2);
+        equilateraltriangle_corner_fillet();
 
-        // filleted triangular block
-        bottomFillet(b=0, r=r_fil, s=fillet_steps)
-        linear_extrude(h_buoy + h_bottom_fillet_offset + z_fighting)
-        rounding2d(r_fillet)
-        equilateraltriangle2d(r=d_buoy/2);
+        // pos-x neg-y
+        translate([-r_fillet_offset, -d_buoy/2, 0])
+        cube([d_buoy + r_fil, d_buoy/2, h_buoy + h_bottom_fillet_offset + z_fighting]);
+    }
 
-        // corner
-        translate([-d_buoy/2, 0, 0])
-        cube([d_buoy/2, d_buoy/2, h_buoy + h_bottom_fillet_offset + z_fighting]);
+    // filleted wedge to remove sharp corner along intersection of drainpipe and keyhole walls
+    difference() {
+        translate([d_buoy/2 - r_fillet_offset, r_fil, 0])
+        rotate([0, 0, -corner_to_drainpipe_angle])
+        translate([-d_buoy/2 + r_fillet_offset, -r_fil, 0])
+        equilateraltriangle_corner_fillet();
 
-        // other corner
-        translate([-d_buoy/4, d_i_buoy/2, 0])
-        cube([d_i_buoy/2, d_i_buoy/2, h_buoy + h_bottom_fillet_offset + z_fighting]);
+        // pos-x neg-y
+        translate([-2*r_fil, -d_buoy/2, 0])
+        cube([d_buoy, d_buoy/2, h_buoy + h_bottom_fillet_offset + z_fighting]);
+
+        // pos-y neg-x
+        rotate([0, 0, -corner_to_drainpipe_angle])
+        translate([-d_buoy/2, -d_buoy/2, 0])
+        cube([d_buoy/2, d_buoy, h_buoy + h_bottom_fillet_offset + z_fighting]);
     }
 }
 
