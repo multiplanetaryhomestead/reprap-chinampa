@@ -10,10 +10,11 @@ t_wall_clearance = d_nozzle;
 perimeter_buffer = 10;
 
 d_buoy = (2*y_limit/sqrt(3) - perimeter_buffer)*scale_factor;
+d_i_buoy = sqrt(3)*d_buoy/2;
 h_buoy = z_limit*scale_factor;
 
 d_drain_pipe = (y_limit - perimeter_buffer)*scale_factor/5;
-h_drain_pipe = 140*scale_factor;
+h_drain_pipe = 2*h_buoy/3;
 
 overhang_angle = 60;
 d_buoy_cavity = d_buoy-4*t_wall;
@@ -31,5 +32,5 @@ d_drain_hole=3*d_nozzle;
 r_drain_hole_dist = 3*d_drain_hole;
 d_wicking_chamber_short_base = d_planter/3;
 
-r_fillet = 2*d_water_injection_port_buoy*scale_factor;
+r_fillet = 1.5*d_water_injection_port_buoy*scale_factor;
 h_bottom_fillet_offset = 0.05*r_fillet;

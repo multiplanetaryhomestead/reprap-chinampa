@@ -14,7 +14,8 @@ d_water_injection_port_planter = d_water_injection_port_cavity_planter+2*t_wall;
 d_interface_rim = d_planter_cavity - d_water_injection_port_buoy*sqrt(3)/2 - (d_water_injection_port_cavity_buoy/2)*sin(30)/sin(75) - 2*t_wall;
 
 // Hidden variables:
-$fn=6;
+res_fil = 96;
+$fn = res_fil;
 
 // water injection port walls
 difference() {
@@ -26,12 +27,14 @@ difference() {
     }
 
     // shell used to remove protruding water injection port walls
-    invisible_shell(r_o=d_buoy/2+d_water_injection_port_planter, r_i=d_planter/2, h=z_limit);
+    invisible_shell(r_o=d_buoy/2+d_water_injection_port_planter, r_i=d_planter/2, h=z_limit, r_fil=r_fillet);
 }
 
 // planter walls
 difference() {
-    cylinder(r=d_planter/2, h=h_planter);
+    linear_extrude(h_planter)
+    rounding2d(r_fillet)
+    hexagon2d(r=d_planter/2);
 
     // water injection port cavity
     for (i = [0:1:6]) {
@@ -41,16 +44,20 @@ difference() {
     }
 
     // hexagonal cavity
-    translate([0, 0, 0])
-    cylinder(r=d_planter_cavity/2, h=h_planter);
+    linear_extrude(h_planter)
+    rounding2d(r_fillet)
+    hexagon2d(r=d_planter_cavity/2);
 
     // hexagonal cavity for drainpipe
-    cylinder(r=d_drainpipe/2, h=h_bottom_shell);
+    linear_extrude(h_bottom_shell)
+    hexagon2d(r=d_drainpipe/2);
 }
 
 // planter brim
 difference() {
-    cylinder(r=d_planter/2, h=h_bottom_shell);
+    linear_extrude(h_bottom_shell)
+    rounding2d(r_fillet)
+    hexagon2d(r=d_planter/2);
 
     // water injection port cavity
     for (i = [0:1:6]) {
@@ -60,8 +67,9 @@ difference() {
     }
 
     // hexagonal cavity
-    translate([0, 0, 0])
-    cylinder(r=d_planter_cavity/2-sqrt(3)*d_drain_hole/2, h=h_planter);
+    linear_extrude(h_planter)
+    rounding2d(r_fillet)
+    hexagon2d(r=d_planter_cavity/2-sqrt(3)*d_drain_hole/2);
 }
 
 // water injection port brim
@@ -74,15 +82,16 @@ difference() {
     }
 
     // shell used to remove protruding water injection port walls
-    invisible_shell(r_o=d_buoy/2+d_water_injection_port_planter, r_i=d_planter/2, h=z_limit);
+    invisible_shell(r_o=d_buoy/2+d_water_injection_port_planter, r_i=d_planter/2, h=z_limit, r_fil=r_fillet);
 }
 
 
 // drain mesh
 difference() {
     // drain mesh
-    //isometric_grid_generator(r=d_planter/2, w=d_nozzle, h_layer=h_layer, h_bottom_shell=h_bottom_shell, d_hole=1.5*d_nozzle);
-    cylinder(h=h_bottom_shell, r=d_planter/2);
+    linear_extrude(h_bottom_shell)
+    rounding2d(r_fillet)
+    hexagon2d(r=d_planter/2);
 
     // water injection port cavity
     for (i = [0:1:6]) {

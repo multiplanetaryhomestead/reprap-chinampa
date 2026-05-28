@@ -93,11 +93,21 @@ module water_injection_port(r_o, r_i, h) {
 }
 
 // shell used to remove protruding water injection port walls
-module invisible_shell(r_o, r_i, h) {
+module invisible_shell(r_o, r_i, h, r_fil=0) {
     difference() {
-        cylinder(r=r_o, h=h);
-        cylinder(r=r_i, h=h);
+        linear_extrude(h)
+        rounding2d(r_fil)
+        hexagon2d(r=r_o);
+
+        linear_extrude(h)
+        rounding2d(r_fil)
+        hexagon2d(r=r_i);
     }
+}
+
+// hexagon function
+module equilateraltriangle2d(r) {
+    polygon(points=[[-r, 0], [0, r*sqrt(3)], [r, 0]]);
 }
 
 // hexagon function
